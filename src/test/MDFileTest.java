@@ -11,13 +11,14 @@ import java.util.*;
 public class MDFileTest {
     public static void main(String[] args) {
         testTOC();
+        testRelations();
     }
 
     private static void testTOC() {
         // test of:
             // 1. createMDFile()
             // 2. createTOC()
-            // 3. setRelations()
+
         MD md = new MD();
         MDFile file = md.createMDFile();
 
@@ -27,12 +28,9 @@ public class MDFileTest {
         headersAndBulletPoints.put("Steps for Cloning repository, which uses Git Submodules", new ArrayList<>());
 
         file.getContent().createTOC(headersAndBulletPoints);
-        file.getContent().setRelations(new ArrayList<>(List.of("_030 Technology MOC", "Git", "Private Libraries")));
-
 
         System.out.println(file);
         System.out.println();
-
 
 
         // TOC Example:
@@ -45,5 +43,18 @@ public class MDFileTest {
     3. [[Steps for Cloning repository, which uses Git Submodules]]
      */
     }
+
+    private static void testRelations() {
+        // test of:
+            // 1. setRelations()
+        MD md = new MD();
+        MDFile file = md.createMDFile();
+
+        file.getContent().setRelations(new ArrayList<>(List.of("_030 Technology MOC", "Git", "Private Libraries")));
+
+        System.out.println(file);
+        System.out.println();
+    }
+
 
 }

@@ -12,29 +12,21 @@ import static main.java.com.Alek0m0m.library.utils.file.MDFile.Syntax.TOC.*;
 
 public class MDFile {
 
-    // String title, List<String> superRelations, List<String> subRelations, String exportPath
-    public MDFile() {
-        this.content = new Content();
-    }
-
     private Content content;
+    private String exportPath;
+
+    public MDFile(String exportPath) {
+        this.content = new Content();
+        this.exportPath = exportPath;
+    }
 
     public Content getContent() {
         return content;
     }
 
-
-    // TOC Example:
-    /*
-    ## Table of Contents
-    1. [Definition of Git Submodule](#definition-of-git-submodule)
-    2. [Utility of Git Submodules](#utility-of-git-submodules)
-       - [Utility in General](#utility-in-general)
-       - [Utility for Private Libraries](#utility-for-private-libraries)
-    3. [[Steps for Cloning repository, which uses Git Submodules]]
-     */
-
-
+    public void export() {
+        // TODO export to file, utilize file.io.FileIO
+    }
 
     @Override
     public String toString() {
@@ -42,6 +34,7 @@ public class MDFile {
     }
 
 
+    // ----------------- static Classes of MDFile -----------------
 
     public static class Content {
 

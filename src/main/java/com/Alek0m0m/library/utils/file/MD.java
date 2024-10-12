@@ -10,8 +10,13 @@ public class MD {
     // operations
         // CRUD MDFile
 
+    public MDFile createMDFile(String exportPath) {
+        return new MDFile(exportPath);
+    }
+
     public MDFile createMDFile() {
-        return new MDFile();
+        String exportPath = "/C:/Users/User/Desktop/"; // default export path
+        return createMDFile(null);
     }
 
 }

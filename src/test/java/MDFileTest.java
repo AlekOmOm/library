@@ -1,5 +1,5 @@
-import com.Alek0m0m.library.utils.file.md.MD;
-import com.Alek0m0m.library.utils.file.md.MDFile;
+import com.Alek0m0m.library.utils.file.md.*;
+
 
 import java.util.LinkedHashMap;
 import java.util.List;

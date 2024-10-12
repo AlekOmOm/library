@@ -1,4 +1,3 @@
-
 initialize the library:
 
 Here's a summary of the necessary steps:
@@ -14,6 +13,4 @@ Here's a summary of the necessary steps:
    
 - `cd libs/library`
 - `javac -d . src/main/java/your/package/path/LibraryInitializer.java`
-Project path: libs/library/src/main/java/com/Alek0m0m/library/init/LibraryInitializer.java
--  javac -d . libs/library/src/main/java/com/Alek0m0m/library/init/LibraryInitializer.java
 - `java your.package.path.LibraryInitializer`

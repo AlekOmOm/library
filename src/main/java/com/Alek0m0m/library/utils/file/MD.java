@@ -1,0 +1,78 @@
+package main.java.com.Alek0m0m.library.utils.file;
+
+// MD file utility class
+// specifically for Obsidian MD files
+public class MD {
+
+    private MDFile mdFile;
+
+    // operations
+        // CRUD MDFile
+
+    // ------------------- CRUD MDFile -------------------
+    public MDFile createMDFile(String exportPath) {
+        return new MDFile(exportPath);
+    }
+
+    public MDFile createMDFile() {
+        String exportPath = "/C:/Users/User/Desktop/"; // default export path
+        return createMDFile(exportPath);
+    }
+
+
+}
+
+
+/*
+to note in following example
+- title not included in file content
+- start of file has metadata
+-- Super relations (in this case "_030 Technology MOC" and "Git")
+--- syntax for super relations: before ToC + no indentation + [[ ]] + name of super relation
+
+example: "Git submodules" .md file in Obsidian MD format:
+[[_030 Technology MOC]]
+[[Git]]
+## Table of Contents
+1. [Definition of Git Submodule](#definition-of-git-submodule)
+2. [Utility of Git Submodules](#utility-of-git-submodules)
+   - [Utility in General](#utility-in-general)
+   - [Utility for Private Libraries](#utility-for-private-libraries)
+3. [[Steps for Cloning repository, which uses Git Submodules]]
+
+
+---
+
+## Definition of Git Submodule
+A **Git submodule** is a mechanism that allows you to include a separate Git repository as a subdirectory within another Git repository. Submodules keep these repositories separate but linked, allowing the main project to reference specific versions of the submodule. This is useful for projects that depend on external libraries or shared codebases that you want to manage independently.
+
+---
+
+## Utility of Git Submodules
+
+### Utility in General
+- **Modularity**: Git submodules promote code modularity by allowing you to break your project into reusable components that can be maintained independently.
+- **Version Control**: Each submodule points to a specific commit in the submodule repository, allowing the main project to use a stable or specific version of the external library.
+- **Code Reusability**: Submodules make it easy to reuse the same library or component across multiple projects without duplicating the code.
+- **Simplifies Collaboration**: If different teams maintain the main project and the submodule, they can work independently but still stay in sync via the Git submodule mechanism.
+
+### Utility for [[Private Libraries]]
+
+- **Private Code Sharing**:
+	- Git submodules are ideal for sharing private libraries between multiple projects without making the library public.
+		- You can maintain a private Git repository for the library and include it in various projects as a submodule.
+- **Version Locking**:
+	- When using private libraries, submodules ensure that each project uses a specific version of the library, reducing the risk of breaking changes when the library is updated.
+- **Isolated Updates**:
+	- You can update or improve your private library independently from the projects that use it.
+		- When a new version is ready, you can update the submodule in each project at your own pace.
+
+
+
+---
+
+By using Git submodules, you can effectively manage your dependencies, share code across projects, and ensure that your projects remain maintainable and up to date.
+
+
+
+ */

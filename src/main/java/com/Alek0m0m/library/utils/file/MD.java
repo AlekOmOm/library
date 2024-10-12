@@ -6,18 +6,19 @@ public class MD {
 
     private MDFile mdFile;
 
-
     // operations
         // CRUD MDFile
 
+    // ------------------- CRUD MDFile -------------------
     public MDFile createMDFile(String exportPath) {
         return new MDFile(exportPath);
     }
 
     public MDFile createMDFile() {
         String exportPath = "/C:/Users/User/Desktop/"; // default export path
-        return createMDFile(null);
+        return createMDFile(exportPath);
     }
+
 
 }
 

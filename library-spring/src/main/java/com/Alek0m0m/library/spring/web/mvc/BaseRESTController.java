@@ -11,17 +11,19 @@ import java.util.List;
 
 
 @RestController
-public abstract class BaseRESTController<T extends BaseEntity<ID>, ID extends Serializable> implements BaseRESTControllerInterface<T, ID> {
+public abstract class BaseRESTController<T extends BaseEntity<ID>, ID extends Serializable, ServiceClass> implements BaseRESTControllerInterface<T, ID> {
 
-    private final BaseService<T, ID> service;
+    private final BaseService<T, ID, BaseRepository<T, ID>> baseService;
+    protected final ServiceClass service;
 
     @Autowired
-    protected BaseRESTController(BaseService<T, ID> service) {
-        this.service = service;
+    protected BaseRESTController(BaseService<T, ID, BaseRepository<T, ID>> service) {
+        this.baseService = service;
+        this.service = (ServiceClass) service;
     }
 
-    public BaseService<T, ID> getService() {
-        return service;
+    public BaseService<T, ID, BaseRepository<T, ID>> getService() {
+        return baseService;
     }
 
     // ------------------- CRUD -------------------

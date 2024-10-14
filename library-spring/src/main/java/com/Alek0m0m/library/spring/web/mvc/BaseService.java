@@ -10,17 +10,19 @@ import java.io.Serializable;
 import java.util.List;
 
 @Service
-public abstract class BaseService<T extends BaseEntity<ID>, ID extends Serializable> implements BaseServiceInterface<T, ID> {
+public abstract class BaseService<T extends BaseEntity<ID>, ID extends Serializable, RepositoryClass> implements BaseServiceInterface<T, ID> {
 
-    private final BaseRepository<T, ID> repository;
+    private final BaseRepository<T, ID> baseRepository;
+    protected final RepositoryClass repository;
 
     @Autowired
     protected BaseService(BaseRepository<T, ID> repository) {
-        this.repository = repository;
+        this.baseRepository = repository;
+        this.repository = (RepositoryClass) repository;
     }
 
     public BaseRepository<T, ID> getRepository() {
-        return repository;
+        return baseRepository;
     }
 
     @Override

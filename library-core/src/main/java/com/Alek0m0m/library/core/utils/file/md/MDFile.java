@@ -1,14 +1,13 @@
-package com.Alek0m0m.library.utils.file.md;
+package com.Alek0m0m.library.core.utils.file.md;
 
-import com.Alek0m0m.library.utils.word.WordHandler;
+import com.Alek0m0m.library.core.utils.word.WordHandler;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-
-import static com.Alek0m0m.library.utils.file.md.MDFile.Syntax.*;
-import static com.Alek0m0m.library.utils.file.md.MDFile.Syntax.TOC.*;
+import static com.Alek0m0m.library.core.utils.file.md.MDFile.Syntax.*;
+import static com.Alek0m0m.library.core.utils.file.md.MDFile.Syntax.TOC.*;
 
 
 public class MDFile {

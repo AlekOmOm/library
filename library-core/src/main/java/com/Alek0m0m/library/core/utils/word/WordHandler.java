@@ -1,4 +1,4 @@
-package com.Alek0m0m.library.utils.word;
+package com.Alek0m0m.library.core.utils.word;
 
 import java.util.*;
 

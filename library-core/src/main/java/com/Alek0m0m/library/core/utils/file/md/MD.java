@@ -1,4 +1,4 @@
-package com.Alek0m0m.library.utils.file.md;
+package com.Alek0m0m.library.core.utils.file.md;
 
 public class MD {
 

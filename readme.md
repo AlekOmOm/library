@@ -78,7 +78,7 @@ mvn clean install
 You can now use the classes and methods provided by the library in your project. Simply import the necessary classes, for example:
 
 ```java
-import com.Alek0m0m.library.utils.word.WordHandler;
+
 ```
 
 Now you can utilize the functionality provided by `WordHandler` or other classes in your library.

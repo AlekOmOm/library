@@ -3,6 +3,27 @@
 
 This repository hosts a custom coding library, available through **GitHub Packages**. 
 
+Languages: _(currently only Java)_
+- **Java**
+
+
+Library modules currently include:
+
+- **Spring**:  _(Spring Web: MVC, REST, and Data JPA)_
+  - **Web.MVC**:   _(all implementing **CRUD operations** and **Autowiring the layers together**)_
+    - **BaseController**: implemented **HTTP Mappings** for CRUD operations and service autowiring
+    - **BaseService**: implemented **Error Handling** for _CRUD flow between Controller and Repository_
+    - **BaseRepository**: implemented **JPA**, **BaseEntity** _(from JPA library module)_ 
+
+
+- **JPA**: for JPA entities and relations 
+  - **BaseEntity**: implemented JPA Entity /w **ID and Name** _(with Get & Set, and toString() method)_
+
+
+- **Core**: Contains general Java classes and utilities.
+   - **File**: currently MD file handling
+   - **WordHandler**: processing for identifying, cleaning and appending Words
+
 Follow the steps below to add this library as a dependency in a new Maven project.
 
 ## Prerequisites

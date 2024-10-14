@@ -78,10 +78,26 @@ mvn clean install
 You can now use the classes and methods provided by the library in your project. Simply import the necessary classes, for example:
 
 ```java
+import com.Alek0m0m.library.spring.web.mvc.BaseRESTController;
 
+@RestController
+public class MyController extends BaseRESTController<MyModel, Long, MyService>  {
+
+   @Autowired
+   public UserController(BaseService<MyModel, Long, BaseRepository<MyModel, Long>> service) {
+      super(service);
+   }
+   // MyController now has auto implemented CRUD methods
+
+   // Your code here:
+   public void myCustomMethod() {
+       service.myCustomServiceMethod(); // service variable is Autowired as well as protected and accessible in MyController
+       service.findAll(); // findAll() auto implemented with MyService extension of BaseService
+   }
+}
 ```
 
-Now you can utilize the functionality provided by `WordHandler` or other classes in your library.
+Now you can utilize the functionality provided by fx `BaseRESTController` from the Spring module of the library or other classes in your library.
 
 ---
 

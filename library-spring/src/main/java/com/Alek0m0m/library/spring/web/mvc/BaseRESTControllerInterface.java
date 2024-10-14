@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 public interface BaseRESTControllerInterface<T extends BaseEntity<ID>, ID extends Serializable> {
-    BaseService<T, ID> getService();
+    BaseService<T, ID, BaseRepository<T, ID>> getService();
 
     // ------------------- CRUD -------------------
 

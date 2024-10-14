@@ -20,6 +20,14 @@ You'll need to set up your Maven `settings.xml` to authenticate with GitHub usin
     - On **Windows**: `C:\Users\<YourUsername>\.m2\settings.xml`
     - On **Linux/macOS**: `~/.m2/settings.xml`
 
+    - If the file doesn't exist, create a new one.
+      - **Windows**: `C:\Users\<YourUsername>\.m2\settings.xml`
+      - **Linux/macOS**: `~/.m2/settings.xml`
+
+       - _**Note**: If you're creating a new file, ensure it's saved as an XML file `settings.xml`_      
+        
+
+
 2. Add the following to your `settings.xml`:
 
    ```xml
@@ -91,8 +99,8 @@ public class MyController extends BaseRESTController<MyModel, Long, MyService>  
 
    // Your code here:
    public void myCustomMethod() {
-       service.myCustomServiceMethod(); // service variable is Autowired as well as protected and accessible in MyController
-       service.findAll(); // findAll() auto implemented with MyService extension of BaseService
+       service.myCustomServiceMethod(); // service variable is Autowired and Accessible in MyController
+       service.findAll(); // findAll() inherited method BaseService class
    }
 }
 ```

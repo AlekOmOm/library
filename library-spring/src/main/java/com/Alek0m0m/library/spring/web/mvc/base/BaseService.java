@@ -1,4 +1,4 @@
-package com.Alek0m0m.library.spring.web.mvc;
+package com.Alek0m0m.library.spring.web.mvc.base;
 
 
 import com.Alek0m0m.library.jpa.BaseEntity;
@@ -15,6 +15,7 @@ public abstract class BaseService<T extends BaseEntity<ID>, ID extends Serializa
     private final BaseRepository<T, ID> baseRepository;
     protected final RepositoryClass repository;
 
+
     @Autowired
     protected BaseService(BaseRepository<T, ID> repository) {
         this.baseRepository = repository;
@@ -25,6 +26,7 @@ public abstract class BaseService<T extends BaseEntity<ID>, ID extends Serializa
         return baseRepository;
     }
 
+    // ------------------- CRUD -------------------
     @Override
     public T save(T entity) {
         return getRepository().save(entity);
@@ -56,6 +58,25 @@ public abstract class BaseService<T extends BaseEntity<ID>, ID extends Serializa
                 .orElseThrow(() -> new EntityNotFoundException("Entity not found"));
     }
 
+    public T updateWithSetRelations(ID id, T newEntity) {
+        T existingEntity = findById(id);
+        setRelations(newEntity, existingEntity);
+        return save(newEntity);
+    }
+
+    public T updateWithMergeRelations(ID id, T newEntity) {
+        T existingEntity = findById(id);
+        mergeRelations(newEntity, existingEntity);
+        return save(newEntity);
+    }
+
+    // Abstract method for handling relations (parent-child, one-to-many, many-to-many)
+    protected void setRelations(T newEntity, T existingEntity) {
+        // any set operations in class
+
+    }
+
+    protected abstract void mergeRelations(T entity, T existingEntity);
 
     @Override
     public void deleteById(ID id) {

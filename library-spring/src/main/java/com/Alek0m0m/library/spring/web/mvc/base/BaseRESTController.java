@@ -1,4 +1,4 @@
-package com.Alek0m0m.library.spring.web.mvc;
+package com.Alek0m0m.library.spring.web.mvc.base;
 
 import com.Alek0m0m.library.jpa.BaseEntity;
 
@@ -16,10 +16,12 @@ public abstract class BaseRESTController<T extends BaseEntity<ID>, ID extends Se
     private final BaseService<T, ID, BaseRepository<T, ID>> baseService;
     protected final ServiceClass service;
 
+
     @Autowired
-    protected BaseRESTController(BaseService<T, ID, BaseRepository<T, ID>> service) {
-        this.baseService = service;
-        this.service = (ServiceClass) service;
+    protected BaseRESTController(BaseService<T, ID, BaseRepository<T, ID>> servicePrm) {
+        this.baseService = servicePrm;
+        service = (ServiceClass) servicePrm;
+
     }
 
     public BaseService<T, ID, BaseRepository<T, ID>> getService() {
@@ -32,6 +34,7 @@ public abstract class BaseRESTController<T extends BaseEntity<ID>, ID extends Se
     public ResponseEntity<T> create(@RequestBody T entity) {
         return ResponseEntity.ok(getService().save(entity));
     }
+
 
     @GetMapping
     public ResponseEntity<List<T>> getAll() {

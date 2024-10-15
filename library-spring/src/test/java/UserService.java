@@ -1,5 +1,5 @@
 
-import com.Alek0m0m.library.spring.web.mvc.BaseService;
+import com.Alek0m0m.library.spring.web.mvc.base.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,11 +9,16 @@ public class UserService extends BaseService<User, Long, UserRepository> {
     @Autowired
     public UserService(UserRepository repository) {
         super(repository);
+
     }
 
     public void multiply(int a, int b) {
-
+        repository.multiply(a, b);
         System.out.println(a * b);
     }
 
+    @Override
+    protected void mergeRelations(User entity, User existingEntity) {
+
+    }
 }

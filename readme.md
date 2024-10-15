@@ -12,8 +12,7 @@ Library modules:
 - **Spring**:  
   - **Web.MVC**:   
     - for     
-      - MVC, REST, and Data JPA with **Autowiring the layers together**
-      
+      - MVC, REST, and Data JPA with **Autowiring the layers together** 
     - **BaseController**: implemented main **HTTP Mappings** for CRUD operations and service autowiring
     - **BaseService**: implemented **Error Handling** for _CRUD flow between Controller and Repository_
     - **BaseRepository**: implemented **JPA**, **BaseEntity** _(from JPA library module)_ 
@@ -110,7 +109,7 @@ mvn clean install
 You can now use the classes and methods provided by the library in your project. Simply import the necessary classes, for example:
 
 ```java
-import com.Alek0m0m.library.spring.web.mvc.BaseRESTController;
+import com.Alek0m0m.library.spring.web.mvc.base.BaseRESTController;
 
 @RestController
 public class MyController extends BaseRESTController<MyModel, Long, MyService>  {

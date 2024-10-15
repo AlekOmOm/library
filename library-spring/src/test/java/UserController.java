@@ -1,7 +1,7 @@
 
-import com.Alek0m0m.library.spring.web.mvc.BaseRESTController;
-import com.Alek0m0m.library.spring.web.mvc.BaseRepository;
-import com.Alek0m0m.library.spring.web.mvc.BaseService;
+import com.Alek0m0m.library.spring.web.mvc.base.BaseRESTController;
+import com.Alek0m0m.library.spring.web.mvc.base.BaseRepository;
+import com.Alek0m0m.library.spring.web.mvc.base.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 

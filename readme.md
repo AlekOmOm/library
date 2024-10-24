@@ -5,6 +5,16 @@ This repository hosts a custom coding library, available through **GitHub Packag
 
 Languages:
 - **Java**
+- coming soon (hopefully): 
+    - **JavaScript**
+    - **Python**
+
+Frameworks required
+- **Spring**
+- **Maven**
+- **JPA**
+
+## Library Modules
 
 
 Library modules:

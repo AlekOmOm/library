@@ -1,9 +1,15 @@
 
 
 import com.Alek0m0m.library.jpa.BaseEntity;
+import com.Alek0m0m.library.spring.web.mvc.annotation.GenerateDTO;
+import com.Alek0m0m.library.spring.web.mvc.annotation.RelationAnnotationProcessor;
 import jakarta.persistence.Entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
+@GenerateDTO
 public class User extends BaseEntity<Long> {
 
     private String email;
@@ -50,5 +56,14 @@ public class User extends BaseEntity<Long> {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public static void main(String[] args) {
+        User user = new User();
+        RelationAnnotationProcessor relationAnnotationProcessor = new RelationAnnotationProcessor();
+
+        System.out.println(user.getId());
+        user.setId(1L);
+        System.out.println(user.getId());
     }
 }

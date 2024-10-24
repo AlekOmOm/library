@@ -20,6 +20,9 @@
         <module>library-spring</module>
     </modules>
 
+
+
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -38,6 +41,12 @@
                 <version>2.2.224</version>
                 <scope>runtime</scope>
             </dependency>
+            <dependency>
+                <groupId>com.google.auto.service</groupId>
+                <artifactId>auto-service</artifactId>
+                <version>1.0.1</version>
+                <scope>provided</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -53,4 +62,37 @@
             <url>https://maven.pkg.github.com/AlekOmOm/library</url>
         </snapshotRepository>
     </distributionManagement>
+
+    <repositories>
+        <repository>
+            <id>central</id>
+            <url>https://repo.maven.apache.org/maven2</url>
+        </repository>
+    </repositories>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version> <!-- Ensure the version matches your project needs -->
+                <configuration>
+                    <!-- Java version -->
+                    <source>21</source> <!-- Or whatever Java version you are using -->
+                    <target>21</target>
+
+                    <!-- Ensures that the annotation processor runs -->
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>com.google.auto.service</groupId>
+                            <artifactId>auto-service</artifactId>
+                            <version>1.0.1</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>

@@ -15,7 +15,6 @@ public abstract class BaseService<T extends BaseEntity<ID>, ID extends Serializa
     private final BaseRepository<T, ID> baseRepository;
     protected final RepositoryClass repository;
 
-
     @Autowired
     protected BaseService(BaseRepository<T, ID> repository) {
         this.baseRepository = repository;
@@ -64,11 +63,11 @@ public abstract class BaseService<T extends BaseEntity<ID>, ID extends Serializa
         return save(newEntity);
     }
 
-    public T updateWithMergeRelations(ID id, T newEntity) {
-        T existingEntity = findById(id);
-        mergeRelations(newEntity, existingEntity);
-        return save(newEntity);
-    }
+//    public T updateWithMergeRelations(ID id, T newEntity) {
+//        T existingEntity = findById(id);
+//        mergeRelations(newEntity, existingEntity);
+//        return save(newEntity);
+//    }
 
     // Abstract method for handling relations (parent-child, one-to-many, many-to-many)
     protected void setRelations(T newEntity, T existingEntity) {

@@ -145,13 +145,8 @@ public abstract class RelationOrchestrator {
         }
 
         // getService of Type ?
-        public static Class<? extends BaseService> getService(BaseEntity entity) {
-
-            for (Class<? extends BaseService> service : services) {
-                if (service<T>)
-            }
-
-            return
+        public static BaseEntity getService(BaseEntity entity) {
+            return entity; // TODO
         }
 
         public static void setService(int index, Class<? extends BaseService> service) {

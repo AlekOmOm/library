@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.Alek0m0m.library.core.utils.function.validation.Validator.UserInput.RequiredTypes.isRequiredTypesPresent;
+import static com.Alek0m0m.library.core.utils.function.validation.Validator.listIsNonEmpty;
+
+import com.Alek0m0m.library.core.utils.function.validation.UserValidator;
 
 public class RequiredTypesTest {
 
@@ -13,12 +16,14 @@ public class RequiredTypesTest {
         String password = "bob";
         String mail = "bob";
 
-        Validator io = new Validator(username, password, mail);
-        if (io.listIsNonEmpty.test(List.of(username,password,mail))) {
+        UserValidator input = new UserValidator(username, password, mail);
+        input.validate();
+
+        if (listIsNonEmpty.test(List.of(username,password,mail))) {
             System.out.println("nice, not empty");
-            System.out.println("validate():"+ io.validateUserInfo());
+            System.out.println("validate():"+ input.validate());
         }
-        
+
         Validator.isNonEmpty.test(String.valueOf("bob"));
 
         if (isRequiredTypesPresent(password, new ArrayList<String>())) {

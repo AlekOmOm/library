@@ -20,27 +20,24 @@ import java.util.regex.Pattern;
 public class Validator {
     public static final Predicate<String> isNonEmpty = str -> str != null && !str.trim().isEmpty();
     public static final Predicate<Integer> isPositive = num -> num > 0;
-    public final Predicate<List<String>> listIsNonEmpty = str -> str.stream().anyMatch(isNonEmpty);
+    public static final Predicate<List<String>> listIsNonEmpty = str -> str.stream().anyMatch(isNonEmpty);
 
-    private final List<String> input = new ArrayList<>();
-    private final String username;
-    private final String password;
-    private final String email;
+    private static List<UserValidator> users = new ArrayList<>();
 
-    public Validator (String username, String password, String email) {
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        input.addAll(List.of(username, password, email));
+    protected static void addUser(UserValidator user) {
+        users.add(user);
     }
 
-    public boolean validateUserInfo(){
-        return listIsNonEmpty.test(input);
+    public static void deleteUser(UserValidator userValidator) {
+        users.remove(userValidator);
     }
-
 
 
     public static class UserInput {
+
+
+
+
         private static final Pattern upperCasePattern = Pattern.compile("[A-Z]");
         private static final Pattern lowerCasePattern = Pattern.compile("[a-z]");
         private static final Pattern digitPattern = Pattern.compile("[0-9]");

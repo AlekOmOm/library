@@ -3,11 +3,12 @@ package com.Alek0m0m.library.core.utils.function.validation;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.BiFunction;
 import java.util.function.BiPredicate;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
+
+import static com.Alek0m0m.library.core.utils.function.validation.Validator.UserInput.isStrongPassword;
 
 // Input Validation
 
@@ -49,18 +50,15 @@ public class Validator {
         public static final Predicate<String> isValidPassword = pwd -> pwd.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}$");
         public static final Predicate<String> isEmail = email -> email.matches("^[\\w-.]+@[\\w-]+\\.[a-z]{2,}$");
 
-        public static final BiPredicate<String, List<String>> isPasswordStrong = (pwd, choiceOfDefaultRequirements) ->
+        public static final BiPredicate<String, List<String>> isStrongPassword = (pwd, choiceOfDefaultRequirements) ->
                 isValidPassword.test(pwd) &&
                         choiceOfDefaultRequirements.isEmpty()
                         ? RequiredTypes.validatePassword(pwd, DEFAULT_REQUIREMENTS)
                         : RequiredTypes.validatePassword(pwd, choiceOfDefaultRequirements);
 
 
-        // ---------------------------- Required Types ----------------------------
+        // ---------------------------- class Required Types ----------------------------
         public static class RequiredTypes {
-            // const
-
-
 
 
             // ---------------------------- Main Operation ----------------------------
@@ -68,8 +66,6 @@ public class Validator {
                 if (requirements.isEmpty()) requirements = DEFAULT_REQUIREMENTS;
 
                 List<String> validRequirements = VALID_REQUIREMENTS_FILTER.apply(requirements);
-
-                debugger.apply(requirements, validRequirements);
 
                 for (String requirement : validRequirements) {
                     if (!DEFAULT_REQ_PATTERNS.get(requirement).test(pwd)) {
@@ -82,17 +78,8 @@ public class Validator {
                 return true;
             }
 
-            private static final BiFunction<List<String>, List<String>, Boolean> debugger = (x, y) -> {
-                System.out.println();
-                System.out.println(x);
-                System.out.println(y);
-                System.out.println();
-                return true;
-            };
 
-            public static void main(String[] args) {
 
-            }
 
 
             // ---------------------------- Helper Methods ----------------------------
@@ -116,5 +103,17 @@ public class Validator {
     }
 
 
+
+    public static void main(String[] args) {
+        // test validatePassword through isPasswordStrong
+        String pwd = "Password1@";
+        String badPwd = "password";
+        List<String> requirements = List.of("UPPERCASE", "LOWERCASE", "DIGIT", "SPECIAL", "MIN_LENGTH");
+        System.out.println("test validatePassword");
+        System.out.println(" 1. test: " + pwd);
+        System.out.println("result isPasswordStrong? = "+ isStrongPassword.test(pwd, requirements));
+        System.out.println(" 2. test: " + badPwd);
+        System.out.println("result isPasswordStrong? = "+ isStrongPassword.test(badPwd, requirements));
+    }
 
 }

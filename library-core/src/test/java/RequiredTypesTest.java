@@ -4,7 +4,7 @@ import com.Alek0m0m.library.core.utils.function.validation.Validator;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.Alek0m0m.library.core.utils.function.validation.Validator.UserInput.RequiredTypes.isRequiredTypesPresent;
+import static com.Alek0m0m.library.core.utils.function.validation.Validator.UserInput.RequiredTypes.validatePassword;
 import static com.Alek0m0m.library.core.utils.function.validation.Validator.listIsNonEmpty;
 
 import com.Alek0m0m.library.core.utils.function.validation.UserValidator;
@@ -26,7 +26,7 @@ public class RequiredTypesTest {
 
         Validator.isNonEmpty.test(String.valueOf("bob"));
 
-        if (isRequiredTypesPresent(password, new ArrayList<String>())) {
+        if (validatePassword(password, new ArrayList<String>())) {
             System.out.println("heyo");
         }
     }

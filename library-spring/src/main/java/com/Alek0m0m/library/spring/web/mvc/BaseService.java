@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 @Service
 public abstract class BaseService<T extends BaseEntity<ID>, ID extends Serializable, RepositoryClass> implements BaseServiceInterface<T, ID> {
@@ -33,6 +36,18 @@ public abstract class BaseService<T extends BaseEntity<ID>, ID extends Serializa
     @Override
     public List<T> findAll() {
         return getRepository().findAll();
+    }
+
+    public List<T> findAll(Predicate<T> filter) {
+        return baseRepository.findAll().stream()
+                .filter(filter)
+                .collect(Collectors.toList());
+    }
+
+    public <R> List<R> findAllAndConvertToDTO(Function<T, R> entityToDtoMapper) { // TODO: DTO Component in the future (class, mapper, BaseEntity tight coupling)
+        return baseRepository.findAll().stream()
+                .map(entityToDtoMapper)
+                .collect(Collectors.toList());
     }
 
     public T find(T t) {

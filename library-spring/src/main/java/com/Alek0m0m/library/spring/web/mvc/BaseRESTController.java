@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
 
 @RestController
@@ -37,6 +39,28 @@ public abstract class BaseRESTController<T extends BaseEntity<ID>, ID extends Se
     public ResponseEntity<List<T>> getAll() {
         return ResponseEntity.ok(getService().findAll());
     }
+
+    /* example:
+    @GetMapping("/filter")
+    public ResponseEntity<List<T>> getFilteredEntities() {
+        return getAllEntities(BaseEntity::condition);
+    }
+     */
+    public ResponseEntity<List<T>> getAllFiltered(Predicate<T> filter) { // Predicate parameter
+
+        return ResponseEntity.ok(getService().findAll(filter));
+    }
+
+    public <R> ResponseEntity<List<R>> getAllAndConvert(Function<T, R> entityToDtoMapper) { // Function parameter // TODO param will be removed when DTO component is implemented
+
+        return ResponseEntity.ok(getService().findAllAndConvertToDTO(entityToDtoMapper)); //
+    }
+    /* example:
+    @GetMapping("/users")
+    public ResponseEntity<List<UserDTO>> getAllActiveUsers() {
+        // Filter only active users and transform into UserDTO
+        return getAllAndConvert(user -> user.isActive() ? new UserDTO(user) : null);
+    } */
 
     @GetMapping("/{id}")
     public ResponseEntity<T> getById(@PathVariable ID id) {

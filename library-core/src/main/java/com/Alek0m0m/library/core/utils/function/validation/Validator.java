@@ -8,16 +8,23 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
-import static com.Alek0m0m.library.core.utils.function.validation.Validator.UserInput.isStrongPassword;
-
-// Input Validation
-
 /*
+ Validator class (with UserInput & RequiredTypes)
+   - note: so far basic implementation, but structure set for easy addition of more validation methods
 
-                List<String> filteredTypes = requiredTypes.stream()
-                        .filter(type -> List.of("UPPERCASE", "LOWERCASE", "DIGIT", "SPECIAL", "MIN_LENGTH").contains(type))
-                        .toList();
+  Use cases:
+    - used in UserValidator, which validates user input for registration
 
+   Features:
+    simple validation
+    - isNonEmpty
+    - isPositive
+    - listIsNonEmpty
+
+    UserInput:
+    - Validate username (alphanumeric, 5-15 characters)
+    - Validate password (8 characters, at least 1 uppercase, 1 lowercase, 1 digit, 1 special character)
+    - Validate email (standard email format)
  */
 
 
@@ -46,40 +53,40 @@ public class Validator {
 
         // ---------------------------- Operations ----------------------------
 
-        public static final Predicate<String> isValidUsername = name -> name.matches("^[a-zA-Z0-9]{5,15}$");
+        public static final Predicate<String> isValidUsername = name -> name.matches("^[a-zA-Z0-9]{5,15}$"); // 5-15 characters, alphanumeric only, æøå not allowed
+        public static final Predicate<String> isValidUsername2 = name -> name.matches("^[a-zA-Z0-9æøåÆØÅ]{5,15}$"); // 5-15 characters, alphanumeric only, æøå allowed
         public static final Predicate<String> isValidPassword = pwd -> pwd.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}$");
         public static final Predicate<String> isEmail = email -> email.matches("^[\\w-.]+@[\\w-]+\\.[a-z]{2,}$");
 
-        public static final BiPredicate<String, List<String>> isStrongPassword = (pwd, choiceOfDefaultRequirements) ->
-                isValidPassword.test(pwd) &&
-                        choiceOfDefaultRequirements.isEmpty()
-                        ? RequiredTypes.validatePassword(pwd, DEFAULT_REQUIREMENTS)
-                        : RequiredTypes.validatePassword(pwd, choiceOfDefaultRequirements);
-
+        public static final BiPredicate<String, List<String>> isStrongPassword = (pwd, subsetDefaultReqs) ->
+                isValidPassword.test(pwd) && (
+                        subsetDefaultReqs.isEmpty()
+                        ? RequiredTypes.enforcePasswordPolicy(pwd, DEFAULT_REQUIREMENTS) // enforce all default requirements
+                        : RequiredTypes.enforcePasswordPolicy(pwd, subsetDefaultReqs)); // enforce chosen requirements
 
         // ---------------------------- class Required Types ----------------------------
         public static class RequiredTypes {
 
-
             // ---------------------------- Main Operation ----------------------------
-            public static boolean validatePassword(String pwd, List<String> requirements) { // system admin chosen requirements
-                if (requirements.isEmpty()) requirements = DEFAULT_REQUIREMENTS;
+            public static boolean enforcePasswordPolicy(String pwd, List<String> requirements) { // chosen requirements to enforce (default or subset of default reqs)
+                System.out.println("debug enforcePasswordPolicy:");
 
-                List<String> validRequirements = VALID_REQUIREMENTS_FILTER.apply(requirements);
-
-                for (String requirement : validRequirements) {
-                    if (!DEFAULT_REQ_PATTERNS.get(requirement).test(pwd)) {
-                        System.out.println("Debug validatePassword");
-                        System.out.println(" - " + requirement + " failed!");
-                        return false;
-                    }
-                }
-
-                return true;
+                return !VALID_REQUIREMENTS_FILTER.apply(requirements) // filter out invalid requirements
+                        .stream()
+                        .map(req -> testPwd(pwd, req)) // test each requirement
+                        .toList().contains(false); // if any test fails, return false == not strong
             }
 
-
-
+            private static boolean testPwd(String pwd, String req) {
+                boolean boo = DEFAULT_REQ_PATTERNS.get(req).test(pwd);
+                if (!boo) {
+                    System.out.println("PassWord: " + pwd);
+                    System.out.println(" - " + req + " failed!");
+                } else {
+                    System.out.println(" - " + req + " passed!");
+                }
+                return boo;
+            }
 
 
             // ---------------------------- Helper Methods ----------------------------
@@ -90,30 +97,4 @@ public class Validator {
 
         }
     }
-
-    static class API {
-
-
-
-
-    }
-
-    private static boolean isValidPasswordImpl(String pwd) {
-        return UserInput.isValidPassword.test(pwd);
-    }
-
-
-
-    public static void main(String[] args) {
-        // test validatePassword through isPasswordStrong
-        String pwd = "Password1@";
-        String badPwd = "password";
-        List<String> requirements = List.of("UPPERCASE", "LOWERCASE", "DIGIT", "SPECIAL", "MIN_LENGTH");
-        System.out.println("test validatePassword");
-        System.out.println(" 1. test: " + pwd);
-        System.out.println("result isPasswordStrong? = "+ isStrongPassword.test(pwd, requirements));
-        System.out.println(" 2. test: " + badPwd);
-        System.out.println("result isPasswordStrong? = "+ isStrongPassword.test(badPwd, requirements));
-    }
-
 }

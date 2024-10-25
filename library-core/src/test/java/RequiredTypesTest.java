@@ -4,7 +4,8 @@ import com.Alek0m0m.library.core.utils.function.validation.Validator;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.Alek0m0m.library.core.utils.function.validation.Validator.UserInput.RequiredTypes.validatePassword;
+import static com.Alek0m0m.library.core.utils.function.validation.Validator.UserInput.RequiredTypes.enforcePasswordPolicy;
+import static com.Alek0m0m.library.core.utils.function.validation.Validator.UserInput.isStrongPassword;
 import static com.Alek0m0m.library.core.utils.function.validation.Validator.listIsNonEmpty;
 
 import com.Alek0m0m.library.core.utils.function.validation.UserValidator;
@@ -16,18 +17,37 @@ public class RequiredTypesTest {
         String password = "bob";
         String mail = "bob";
 
-        UserValidator input = new UserValidator(username, password, mail);
-        input.validate();
+        String usernameStrong = "Bob12345";
+        String passwordStrong = "Bob12345@";
+        String mailStrong = "bob@mail.com";
 
-        if (listIsNonEmpty.test(List.of(username,password,mail))) {
-            System.out.println("nice, not empty");
-            System.out.println("validate():"+ input.validate());
-        }
+        UserValidator newUser = new UserValidator
+                .Builder(username, password)
+                .email(mail)
+                .build();
 
-        Validator.isNonEmpty.test(String.valueOf("bob"));
+        UserValidator newUserStrong = new UserValidator
+                .Builder(usernameStrong, passwordStrong)
+                .email(mailStrong)
+                .build();
 
-        if (validatePassword(password, new ArrayList<String>())) {
-            System.out.println("heyo");
+        // tests
+
+        newUser.validate();
+        newUserStrong.validate();
+
+        System.out.println();
+        isStrongTest(password, username);
+        isStrongTest(passwordStrong, username);
+    }
+
+    static int counter = 0;
+    private static void isStrongTest(String password, String username) {
+        counter++;
+        System.out.println(counter +". "+ password);
+        if (isStrongPassword.test(password, new ArrayList<String>())) {
+            System.out.println(" password passed the tests!");
+            System.out.println("  chosen by: " + username);
         }
     }
 }

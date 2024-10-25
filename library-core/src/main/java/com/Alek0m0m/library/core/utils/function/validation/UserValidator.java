@@ -27,8 +27,17 @@ public class UserValidator {
     // ---------------------------- Main Operations ----------------------------
 
     public boolean validate(){
+
         return listIsNonEmpty.test(input) && // all fields filled
                 isValidUsername.test(username) &&
+                isValidPassword.test(password) &&
+                isStrongPassword.test(password, new ArrayList<>()) &&
+                (email.isEmpty() || isEmail.test(email));
+    }
+
+    public boolean validateWithDKChar(){
+        return listIsNonEmpty.test(input) && // all fields filled
+                isValidUsername2.test(username) &&
                 isValidPassword.test(password) &&
                 isStrongPassword.test(password, new ArrayList<>()) &&
                 (email.isEmpty() || isEmail.test(email));
@@ -38,6 +47,16 @@ public class UserValidator {
 
 
 
+
+    // toString
+    @Override
+    public String toString() {
+        return "UserValidator{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 
 
     // ---------------------------- Getters ----------------------------

@@ -9,6 +9,6 @@ import java.io.Serializable;
 import java.util.Optional;
 
 @Repository
-public interface BaseRepository<T extends BaseEntity<ID>, ID extends Serializable> extends JpaRepository<T, ID> {
+public interface BaseRepository<T extends BaseEntity> extends JpaRepository<T, Long> {
     Optional<T> findByName(String name);
 }

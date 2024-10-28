@@ -10,35 +10,22 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public abstract class BaseRepositoryAbstract<T extends BaseEntity<ID>, ID extends Serializable> {
+public abstract class BaseRepositoryAbstract<T extends BaseEntity> implements BaseRepository<T> {
 
     // Utilizing the BaseRepositoryInterface
     // gives us access to the custom methods defined in the interface
     // and the default methods defined in JpaRepository
     // without having to implement them in the repository class
-    private final BaseRepository<T, ID> repository;
+    private final BaseRepository<T> repository;
 
     @Autowired
-    public BaseRepositoryAbstract(BaseRepository<T, ID> repository) {
+    public BaseRepositoryAbstract(BaseRepository<T> repository) {
         this.repository = repository;
     }
 
     // can call JPA methods directly on the repository
-    protected JpaRepository<T, ID> getRepository() {
+    protected BaseRepository<T> getRepository() {
         return repository;
     }
 
-    public Optional<T> findByName(String name) {
-        // Custom implementation for finding by name
-        return repository.findAll().stream()
-                .filter(entity -> name.equals(entity.getName()))
-                .findFirst();
-    }
-
-    public List<T> findAllSortedByName() {
-        // Custom implementation for finding all entities sorted by name
-        return repository.findAll().stream()
-                .sorted((e1, e2) -> e1.getName().compareTo(e2.getName()))
-                .toList();
-    }
 }

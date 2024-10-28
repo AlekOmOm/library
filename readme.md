@@ -16,10 +16,12 @@ Frameworks required
 
 ## Library Modules
 
+- [Spring](docs/spring-module.md)
+- [JPA](docs/jpa-module.md)
+- [Core](docs/core-module.md)
 
-Library modules:
-
-- **Spring**:  
+#### Basic Structure
+- **Spring** 
   - **Web.MVC**:   
     - for     
       - MVC, REST, and Data JPA with **Autowiring the layers together**

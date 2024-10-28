@@ -16,16 +16,16 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 @Service
-public abstract class BaseService<T extends BaseEntity, R extends BaseEntityDTO<T>, RepositoryClass> implements BaseServiceInterface<T,R> {
+public abstract class BaseService<T extends BaseEntity, R extends BaseEntityDTO<T>, RepositoryClass extends BaseRepository<T>> implements BaseServiceInterface<T,R> {
 
     private final BaseRepository<T> baseRepository;
     protected final RepositoryClass repository;
     private final EntityToDTOMapper<T, R> entityToDtoMapper;
 
     @Autowired
-    protected BaseService(BaseRepository<T> repository, EntityToDTOMapper<T,R> entityToDtoMapper) {
+    protected BaseService(RepositoryClass repository, EntityToDTOMapper<T,R> entityToDtoMapper) {
         this.baseRepository = repository;
-        this.repository = (RepositoryClass) repository;
+        this.repository = repository;
         this.entityToDtoMapper = entityToDtoMapper;
     }
 
@@ -35,7 +35,9 @@ public abstract class BaseService<T extends BaseEntity, R extends BaseEntityDTO<
 
 
     public R save(BaseEntityDTO<T> entityDTO) {
-        return entityToDtoMapper.apply(getRepository().save(entityDTO.toEntity()));
+        return entityToDtoMapper.apply(
+                getRepository()
+                        .save(entityDTO.toEntity()));
     }
 
     @Override

@@ -4,11 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService extends BaseService<User, Long, UserRepository> {
+public class UserService extends BaseService<User, UserDTO, UserRepository> {
 
     @Autowired
-    public UserService(UserRepository repository) {
-        super(repository);
+    public UserService(UserRepository repository, UserEntityToDTOMapper entityToDtoMapper) {
+        super(repository, entityToDtoMapper);
     }
 
     public void multiply(int a, int b) {

@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController("/user")
-public class UserController extends BaseRESTController<User, Long, UserService> {
+public class UserController extends BaseRESTController<User, UserDTO, UserService> {
 
     @Autowired
-    public UserController(BaseService<User, Long, BaseRepository<User, Long>> service) {
+    public UserController(BaseService<User, UserDTO, BaseRepository<User>> service) {
         super(service);
     }
 

@@ -1,4 +1,4 @@
-package com.Alek0m0m.library.spring.web.mvc;
+package com.Alek0m0m.library.spring.web.mvc.base;
 
 import com.Alek0m0m.library.jpa.BaseEntity;
 import org.springframework.http.ResponseEntity;

@@ -13,7 +13,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set up JDK 16
+      - name: Set up JDK 21
         uses: actions/setup-java@v2
         with:
           distribution: 'temurin'
@@ -22,7 +22,25 @@ jobs:
       - name: Build with Maven
         run: mvn clean install
 
-      - name: Publish to GitHub Packages
-        run: mvn deploy
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+      - name: Check token
+        run: echo ${{ secrets.PAT_TOKEN }}
+
+
+      - name: Prepare settings.xml
+        run: |
+          cat <<- EOF > ~/.m2/settings.xml
+          <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+            <servers>
+              <server>
+                <id>github</id>
+                <username>AlekOmOm</username>
+                <password>${{ secrets.PAT_TOKEN }}</password>
+              </server>
+            </servers>
+          </settings>
+          EOF
+
+      - name: Build and publish
+        run: mvn clean deploy -s ~/.m2/settings.xml

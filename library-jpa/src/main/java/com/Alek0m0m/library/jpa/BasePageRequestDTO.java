@@ -63,4 +63,42 @@ public abstract class BasePageRequestDTO {
             throw new IllegalArgumentException("Page size must be greater than 0");
         }
     }
+
+
+    // --------------------- Getters and Setters ---------------------
+
+    public int getPage() {
+        return page;
+    }
+
+    public void setPage(int page) {
+        this.page = page;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    public String getField() {
+        return field;
+    }
+
+    public void setField(String field) {
+        this.field = field;
+    }
+
+    public Sort.Direction getDirection() {
+        return direction;
+    }
+
+    public void setDirection(Sort.Direction direction) {
+        this.direction = direction;
+    }
+
+
+
 }

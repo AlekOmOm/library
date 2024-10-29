@@ -25,23 +25,6 @@ jobs:
       - name: Check token
         run: echo ${{ secrets.PAT_TOKEN }}
 
-
-      - name: Prepare settings.xml
-        run: |
-          cat <<- EOF > ~/.m2/settings.xml
-          <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
-            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
-            <servers>
-              <server>
-                <id>github</id>
-                <username>AlekOmOm</username>
-                <password>${{ secrets.PAT_TOKEN }}</password>
-              </server>
-            </servers>
-          </settings>
-          EOF
-
       - name: Build and publish
         run: mvn clean deploy -s ~/.m2/settings.xml
         env:

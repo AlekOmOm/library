@@ -20,7 +20,7 @@ jobs:
           java-version: '21'
 
       - name: Load .env file
-        run: echo "GITHUB_TOKEN=$(cat .env | grep GITHUB_TOKEN | cut -d '=' -f2)" >> $GITHUB_ENV
+        run: echo "${{ secrets.PAT_TOKEN }}=$(cat .env | grep GITHUB_TOKEN | cut -d '=' -f2)" >> $GITHUB_ENV
 
       - name: Build with Maven
         run: mvn clean install
@@ -28,4 +28,4 @@ jobs:
       - name: Publish to GitHub Packages
         run: mvn deploy
         env:
-          GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}

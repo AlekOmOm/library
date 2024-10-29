@@ -13,11 +13,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set up JDK 21
+      - name: Set up JDK 16
         uses: actions/setup-java@v2
         with:
           distribution: 'temurin'
-          java-version: '21'
+          java-version: '16'
 
       - name: Load .env file
         run: echo "${{ secrets.PAT_TOKEN }}=$(cat .env | grep GITHUB_TOKEN | cut -d '=' -f2)" >> $GITHUB_ENV

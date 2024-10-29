@@ -1,10 +1,6 @@
 package com.Alek0m0m.library.jpa;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Page;
@@ -16,10 +12,6 @@ import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public abstract class BasePageRequestDTO {
     // extend class
     // set default values through:

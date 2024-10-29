@@ -1,10 +1,9 @@
 import com.Alek0m0m.library.jpa.BaseEntity;
 import com.Alek0m0m.library.jpa.BaseEntityDTO;
-import lombok.Data;
 
 import java.util.HashMap;
 
-@Data
+
 public class UserDTO extends BaseEntityDTO<User> {
 
     private String name;

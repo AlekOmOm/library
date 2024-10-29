@@ -17,7 +17,7 @@ jobs:
         uses: actions/setup-java@v2
         with:
           distribution: 'temurin'
-          java-version: '16'
+          java-version: '21'
 
       - name: Load .env file
         run: echo "${{ secrets.PAT_TOKEN }}=$(cat .env | grep GITHUB_TOKEN | cut -d '=' -f2)" >> $GITHUB_ENV

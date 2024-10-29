@@ -35,7 +35,7 @@ jobs:
             <servers>
               <server>
                 <id>github</id>
-                <username>AlekOmOm</username>
+                <username>${env.GITHUB_USERNAME}</username>
                 <password>${{ secrets.PAT_TOKEN }}</password>
               </server>
             </servers>
@@ -44,3 +44,5 @@ jobs:
 
       - name: Build and publish
         run: mvn clean deploy -s ~/.m2/settings.xml
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}

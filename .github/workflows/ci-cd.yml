@@ -19,21 +19,12 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
-      - name: Configure git
-        run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+      - name: Build with Maven
+        run: mvn clean install
         working-directory: ./
 
-
-      - name: Prepare release
-        run: mvn release:prepare
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT_FULL_POWER }}
-          ACTOR: ${{ github.actor }}
-
-      - name: Perform release
-        run: mvn release:perform
+      - name: Build and publish
+        run: mvn clean deploy -s settings.xml
         working-directory: ./
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_FULL_POWER }}

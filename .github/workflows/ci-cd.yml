@@ -19,6 +19,10 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
+      - name: Grant execute permissions for update-version.sh
+        run: chmod +x ./update-version.sh
+        working-directory: ./
+
       - name: Update version # auto-increments +0.0.1, if not manually set
         run: ./update-version.sh
         working-directory: ./

@@ -19,11 +19,31 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
+      - name: Increment version
+        run: |
+          # Manually set version (uncomment and set the desired version)
+          MANUAL_VERSION="2.0"
+
+          if [ -z "$MANUAL_VERSION" ]; then
+            CURRENT_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+            BASE_VERSION=$(echo $CURRENT_VERSION | awk -F. '{print $1}')
+            MINOR_VERSION=$(echo $CURRENT_VERSION | awk -F. '{print $2}')
+            NEW_MINOR_VERSION=$(echo "$MINOR_VERSION + 0.01" | bc)
+            NEW_VERSION="$BASE_VERSION.$NEW_MINOR_VERSION"
+          else
+            NEW_VERSION=$MANUAL_VERSION
+          fi
+
+          mvn versions:set -DnewVersion=$NEW_VERSION
+        working-directory: ./
+
       - name: Build with Maven
         run: mvn clean install
+        working-directory: ./
 
       - name: Build and publish
         run: mvn clean deploy -s settings.xml
+        working-directory: ./
         env:
           GITHUB_TOKEN: ${{ secrets.LIB_PAT_CLASSIC_TOKEN }}
           ACTOR: ${{ github.actor }}

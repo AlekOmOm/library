@@ -34,7 +34,8 @@ jobs:
           git add .
           git commit -m "Update version to new version"
         working-directory: ./
-        continue-on-error: true
+        env:
+            GITHUB_TOKEN: ${{ secrets.PAT_FULL_POWER }}
 
       - name: Push changes
         run: git push origin master

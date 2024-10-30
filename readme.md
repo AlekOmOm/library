@@ -1,15 +1,20 @@
+Here's an updated version of your README with the necessary changes and improvements:
 
-# My Personal Library
+---
 
-This repository hosts a custom coding library, available through **GitHub Packages**. 
+# Library with hopefully Usable Code Snippets
 
-Languages:
+This repository hosts a custom coding library, available through **GitHub Packages**.
+
+## Languages
+
 - **Java**
-- coming soon (hopefully): 
+- Coming Soon (hopefully):
     - **JavaScript**
     - **Python**
 
-Frameworks required
+## Required Frameworks and Tools
+
 - **Spring**
 - **Maven**
 - **JPA**
@@ -20,49 +25,40 @@ Frameworks required
 - [JPA](docs/jpa-module.md)
 - [Core](docs/core-module.md)
 
-#### Basic Structure
-- **Spring** 
-  - **Web.MVC**:   
-    - for     
-      - MVC, REST, and Data JPA with **Autowiring the layers together**
-      
-    - **BaseController**: implemented main **HTTP Mappings** for CRUD operations and service autowiring
-    - **BaseService**: implemented **Error Handling** for _CRUD flow between Controller and Repository_
-    - **BaseRepository**: implemented **JPA**, **BaseEntity** _(from JPA library module)_ 
+### Basic Structure
 
+- **Spring**
+    - **Web.MVC**:
+        - Supports MVC, REST, and Data JPA with **layer autowiring**.
+        - **BaseController**: Provides main **HTTP mappings** for CRUD operations and service autowiring.
+        - **BaseService**: Implements **error handling** for CRUD flow between Controller and Repository.
+        - **BaseRepository**: Utilizes **JPA** and integrates with **BaseEntity** (from the JPA module).
 
-- **JPA**: for JPA entities and relations 
-  - **BaseEntity**: implemented JPA Entity /w **ID and Name** _(with Get & Set, and toString() method)_
+- **JPA**:
+    - For JPA entities and relationships.
+    - **BaseEntity**: A JPA entity with fields for **ID and Name**, along with standard `get`, `set`, and `toString()` methods.
 
+- **Core**:
+    - Contains general Java utilities.
+    - **File**: For handling Markdown (MD) files.
+    - **WordHandler**: For processing, identifying, cleaning, and appending words.
 
-- **Core**: Contains general Java classes and utilities.
-   - **File**: currently MD file handling
-   - **WordHandler**: processing for identifying, cleaning and appending Words
+## How to Use This Library in a New Maven Project
 
-Follow the steps below to add this library as a dependency in a new Maven project.
+### Prerequisites
 
-## Prerequisites
+- **Maven**: Ensure Maven is installed and configured on your system.
+- **GitHub Personal Access Token (PAT)**: You’ll need a PAT with `read:packages` permission to access the library.
 
-- **Maven**: Ensure Maven is installed and configured in your system.
-- **GitHub Personal Access Token (PAT)**: You'll need a PAT with `read:packages` permission to access the library.
+### 1. Configure Maven to Authenticate with GitHub Packages
 
-## Steps to Use This Library in a New Maven Project
-
-### 1. **Configure Maven to Authenticate with GitHub Packages**
-
-You'll need to set up your Maven `settings.xml` to authenticate with GitHub using a Personal Access Token (PAT).
+You’ll need to configure Maven to authenticate with GitHub Packages using your PAT.
 
 1. Locate your Maven `settings.xml` file:
     - On **Windows**: `C:\Users\<YourUsername>\.m2\settings.xml`
     - On **Linux/macOS**: `~/.m2/settings.xml`
 
-    - If the file doesn't exist, create a new one.
-      - **Windows**: `C:\Users\<YourUsername>\.m2\settings.xml`
-      - **Linux/macOS**: `~/.m2/settings.xml`
-
-       - _**Note**: If you're creating a new file, ensure it's saved as an XML file `settings.xml`_      
-        
-
+   If the file doesn’t exist, create a new one.
 
 2. Add the following to your `settings.xml`:
 
@@ -72,18 +68,18 @@ You'll need to set up your Maven `settings.xml` to authenticate with GitHub usin
            <server>
                <id>github</id>
                <username>YOUR_GITHUB_USERNAME</username>
-               <password>${env.GITHUB_TOKEN}</password> <!-- Or replace with your PAT -->
+               <password>${env.GITHUB_TOKEN}</password> <!-- Or replace with your PAT directly -->
            </server>
        </servers>
    </settings>
    ```
 
     - Replace `YOUR_GITHUB_USERNAME` with your GitHub username.
-    - Set the `GITHUB_TOKEN` environment variable to your Personal Access Token (PAT). If not using environment variables, you can directly place the token in the `<password>` field.
+    - Set the `GITHUB_TOKEN` environment variable to your PAT. Alternatively, you can place the PAT directly in the `<password>` field.
 
-### 2. **Add GitHub Packages as a Repository**
+### 2. Add GitHub Packages as a Repository
 
-In your new project’s `pom.xml`, add the following repository entry to let Maven know where to find the library:
+In your new project’s `pom.xml`, add the following repository entry so Maven knows where to find the library:
 
 ```xml
 <repositories>
@@ -95,61 +91,84 @@ In your new project’s `pom.xml`, add the following repository entry to let Mav
 </repositories>
 ```
 
-### 3. **Add the Library as a Dependency**
+### 3. Add the Library Modules as Dependencies
 
-To use the library in your project, include it as a dependency in your `pom.xml`:
+To use the library in your project, add the specific modules you need as dependencies. For example:
 
 ```xml
 <dependencies>
     <dependency>
         <groupId>com.Alek0m0m</groupId>
-        <artifactId>library</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <artifactId>library-spring</artifactId>
+        <version>2.1.3</version> <!-- replace with latest version or release -->
+    </dependency>
+    <dependency>
+        <groupId>com.Alek0m0m</groupId>
+        <artifactId>library-jpa</artifactId>
+        <version>2.1.3</version>
+    </dependency>
+    <dependency>
+        <groupId>com.Alek0m0m</groupId>
+        <artifactId>library-core</artifactId>
+        <version>2.1.3</version>
     </dependency>
 </dependencies>
 ```
 
-### 4. **Run Maven Install**
+> **Note**: You only need to add the specific submodules (`library-spring`, `library-jpa`, `library-core`) instead of the parent module.
 
-Once your `pom.xml` is set up, run the following command to ensure all dependencies are resolved, and your project is set up:
+### 4. Run Maven Install
+
+With your `pom.xml` configured, run the following command to download dependencies and set up your project:
 
 ```bash
 mvn clean install
 ```
 
-### 5. **Use the Library in Your Code**
+### 5. Use the Library in Your Code
 
-You can now use the classes and methods provided by the library in your project. Simply import the necessary classes, for example:
+You can now use the classes and methods provided by the library in your project. For example:
+
+```java
+import com.Alek0m0m.library.jpa.BaseEntity;
+
+public class User extends BaseEntity {
+    // Your custom code here
+}
+```
+
+Or, if you are using the `BaseRESTController`:
 
 ```java
 import com.Alek0m0m.library.spring.web.mvc.BaseRESTController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class MyController extends BaseRESTController<MyModel, Long, MyService>  {
+public class UserController extends BaseRESTController<User, UserDTO, UserService> {
 
    @Autowired
-   public UserController(BaseService<MyModel, Long, BaseRepository<MyModel, Long>> service) {
+   public MyController(UserService service) {
       super(service);
    }
-   // MyController now has auto implemented CRUD methods
 
-   // Your code here:
-   public void myCustomMethod() {
-       service.myCustomServiceMethod(); // service variable is Autowired and Accessible in MyController
-       service.findAll(); // findAll() inherited method BaseService class
+   // MyController now has implemented CRUD methods
+   public void userCustomMethod() {
+       service.userCustomServiceMethod();
+       service.findAll(); // findAll() is inherited from BaseService
    }
 }
 ```
 
-Now you can utilize the functionality provided by fx `BaseRESTController` from the Spring module of the library or other classes in your library.
+Now you can utilize functionalities provided by the library modules.
 
 ---
 
 ## Troubleshooting
 
-- **Error fetching dependency**: Ensure the Personal Access Token (PAT) in your `settings.xml` is valid and has `read:packages` permission.
-- **Snapshot versions**: If you're using a snapshot version (`1.0-SNAPSHOT`), make sure you include the `<snapshotRepository>` tag in your `pom.xml` if needed.
+- **Error fetching dependency**: Ensure the PAT in your `settings.xml` is valid and has `read:packages` permission.
+- **Snapshot versions**: If you’re using a snapshot version (e.g., `1.0-SNAPSHOT`), ensure that `<snapshotRepository>` is configured in `pom.xml` if needed.
 
 ---
 
-Let me know if you want to add anything or further refine the guide!
+Let me know if you'd like to add more details or make any further adjustments!

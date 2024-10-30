@@ -30,12 +30,12 @@ jobs:
       - name: Prepare release
         run: mvn release:prepare
         env:
-          GITHUB_TOKEN: ${{ secrets.PAT_FINE_GRAINED }}
+          GITHUB_TOKEN: ${{ secrets.PAT_FULL_POWER }}
           ACTOR: ${{ github.actor }}
 
       - name: Perform release
         run: mvn release:perform
         working-directory: ./library
         env:
-          GITHUB_TOKEN: ${{ secrets.PAT_FINE_GRAINED }}
+          GITHUB_TOKEN: ${{ secrets.PAT_FULL_POWER }}
           ACTOR: ${{ github.actor }}

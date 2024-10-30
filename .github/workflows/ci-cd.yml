@@ -27,16 +27,16 @@ jobs:
         run: ./update-version.sh
         working-directory: ./
 
-      - name: Commit updated version
+      - name: Commit and push updated version
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git add .
           git commit -m "Update version to new version"
-          git push origin master
+          git push https://<PAT_FULL_POWER>@github.com/AlekOmOm/library.git master
         working-directory: ./
         env:
-            GITHUB_TOKEN: ${{ secrets.PAT_FULL_POWER }}
+          PAT_FULL_POWER: ${{ secrets.PAT_FULL_POWER }}
 
       - name: Build with Maven
         run: mvn clean install
@@ -46,5 +46,5 @@ jobs:
         run: mvn clean deploy -s settings.xml
         working-directory: ./
         env:
-          GITHUB_TOKEN: ${{ secrets.PAT_FULL_POWER }}
+          GITHUB_TOKEN: ${{ secrets.LIB_PAT_CLASSIC_TOKEN }}
           ACTOR: ${{ github.actor }}

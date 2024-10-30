@@ -9,9 +9,9 @@ import org.springframework.http.ResponseEntity;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-public abstract class BasePageRESTController<T extends BaseEntity, R extends BaseEntityDTO<T>, ServiceClass> extends BaseRESTController<T,R, ServiceClass> {
+public abstract class BasePageRESTController<T extends BaseEntity, R extends BaseEntityDTO<T>, ServiceClass extends BaseService<T, R, RepositoryClass>, RepositoryClass extends BaseRepository<T>> extends BaseRESTController<T,R, ServiceClass, RepositoryClass> {
 
-    public BasePageRESTController(BaseService<T, R, BaseRepository<T>> service) {
+    public BasePageRESTController(ServiceClass service) {
         super(service);
     }
 

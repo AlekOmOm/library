@@ -16,7 +16,7 @@ public interface BaseRESTControllerInterface<T extends BaseEntity,R extends Base
 
 
     @PostMapping
-    public ResponseEntity<R> create(@RequestBody BaseEntityDTO<T> entityDTO) ;
+    public ResponseEntity<R> create(@RequestBody BaseEntityDTO<T> entityDTO);
 
     @GetMapping()
     public ResponseEntity<List<R>> getAll();

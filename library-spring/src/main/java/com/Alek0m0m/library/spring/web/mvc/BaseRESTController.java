@@ -7,29 +7,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.Serializable;
 import java.util.List;
-import java.util.function.Function;
 import java.util.function.Predicate;
 
-
 @RestController
-public abstract class BaseRESTController<T extends BaseEntity, R extends BaseEntityDTO<T>, ServiceClass extends BaseService<T, R, BaseRepository<T>>> implements BaseRESTControllerInterface<T,R> {
+public abstract class BaseRESTController<T extends BaseEntity, R extends BaseEntityDTO<T>, ServiceClass extends BaseService<T, R, RepositoryClass>, RepositoryClass extends BaseRepository<T>> implements BaseRESTControllerInterface<T, R> {
 
-    private final BaseService<T, R, BaseRepository<T>> baseService;
+    private final BaseService<T, R, RepositoryClass> baseService;
     protected final ServiceClass service;
 
     @Autowired
     protected BaseRESTController(ServiceClass service) {
-        this.baseService = (BaseService<T, R, BaseRepository<T>>) service;
+        this.baseService = service;
         this.service = service;
     }
 
-    public BaseService<T,R, BaseRepository<T>> getService() {
-        return baseService;
+    public BaseService<T, R, BaseRepository<T>> getService() {
+        return (BaseService<T, R, BaseRepository<T>>) baseService;
     }
 
+
     // ------------------- CRUD -------------------
+
+
 
     @PostMapping
     public ResponseEntity<R> create(@RequestBody BaseEntityDTO<T> entityDTO) {

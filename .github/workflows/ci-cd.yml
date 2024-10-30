@@ -40,7 +40,7 @@ jobs:
         run: git push origin master
         working-directory: ./
         env:
-          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT_FULL_POWER }}
 
       - name: Build with Maven
         run: mvn clean install

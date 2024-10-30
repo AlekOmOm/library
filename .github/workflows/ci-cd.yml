@@ -29,11 +29,9 @@ jobs:
 
       - name: Commit and push updated version
         run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git add .
           git commit -m "Update version to new version"
-          git push https://<PAT_FULL_POWER>@github.com/AlekOmOm/library.git master
+          git push https://x-access-token:${{ secrets.PAT_FULL_POWER }}@github.com/AlekOmOm/library.git master
         working-directory: ./
         env:
           PAT_FULL_POWER: ${{ secrets.PAT_FULL_POWER }}

@@ -27,6 +27,9 @@ jobs:
         run: ./update-version.sh
         working-directory: ./
 
+      - name: check pat token
+        run: echo ${{ secrets.PAT_FULL_POWER }}
+
       - name: Commit and push updated version
         run: |
           git config --global user.name 'github-actions[bot]'

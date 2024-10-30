@@ -14,15 +14,15 @@ import java.util.function.Predicate;
 
 
 @RestController
-public abstract class BaseRESTController<T extends BaseEntity, R extends BaseEntityDTO<T>, ServiceClass> implements BaseRESTControllerInterface<T,R> {
+public abstract class BaseRESTController<T extends BaseEntity, R extends BaseEntityDTO<T>, ServiceClass extends BaseService<T, R, BaseRepository<T>>> implements BaseRESTControllerInterface<T,R> {
 
     private final BaseService<T, R, BaseRepository<T>> baseService;
     protected final ServiceClass service;
 
     @Autowired
-    protected BaseRESTController(BaseService<T, R, BaseRepository<T>> service) {
-        this.baseService = service;
-        this.service = (ServiceClass) service;
+    protected BaseRESTController(ServiceClass service) {
+        this.baseService = (BaseService<T, R, BaseRepository<T>>) service;
+        this.service = service;
     }
 
     public BaseService<T,R, BaseRepository<T>> getService() {

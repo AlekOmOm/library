@@ -37,3 +37,5 @@ fi
 
 # Update the version in the pom.xml files
 mvn versions:set -DnewVersion=$NEW_VERSION
+
+mvn install -DskipTests

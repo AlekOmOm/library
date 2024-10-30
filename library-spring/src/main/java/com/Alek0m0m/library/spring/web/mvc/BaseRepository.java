@@ -9,5 +9,5 @@ import java.util.Optional;
 
 @Repository
 public interface BaseRepository<T extends BaseEntity> extends JpaRepository<T, Long> {
-    Optional<T> findByName(String name);
+
 }

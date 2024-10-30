@@ -15,13 +15,6 @@ public class UserController extends BaseRESTController<User, UserDTO, UserServic
         super(service);
     }
 
-    public void multiply(int a, int b) {
-        service.multiply(a, b);
-        service.findByName("name");
-        getService().findByName("name");
-        // getService().multiply(a, b);
-        System.out.println(a * b);
-    }
 
     @Override
     public ResponseEntity<UserDTO> create(BaseEntityDTO<User> entityDTO) {

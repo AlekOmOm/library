@@ -67,12 +67,6 @@ public abstract class BaseService<T extends BaseEntity, R extends BaseEntityDTO<
                 .orElseThrow(() -> new EntityNotFoundException("Entity not found"));
     }
 
-    public R findByName(String name) {
-        return getRepository().findByName(name)
-                .map(entityToDtoMapper)
-                .orElseThrow(() -> new EntityNotFoundException("Entity not found"));
-    }
-
 
     @Override
     public void deleteById(long id) {

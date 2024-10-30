@@ -33,15 +33,10 @@ jobs:
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git add .
           git commit -m "Update version to new version"
+          git push origin master
         working-directory: ./
         env:
             GITHUB_TOKEN: ${{ secrets.PAT_FULL_POWER }}
-
-      - name: Push changes
-        run: git push origin master
-        working-directory: ./
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT_FULL_POWER }}
 
       - name: Build with Maven
         run: mvn clean install

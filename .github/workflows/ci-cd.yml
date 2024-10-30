@@ -22,10 +22,8 @@ jobs:
       - name: Build with Maven
         run: mvn clean install
 
-      - name: Check token
-        run: echo ${{ secrets.PAT_TOKEN }}
-
       - name: Build and publish
-        run: mvn clean deploy -s ~/.m2/settings.xml
+        run: mvn clean deploy -s settings.xml
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+          ACTOR: ${{ github.actor }}

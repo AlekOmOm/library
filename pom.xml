@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.Alek0m0m</groupId>
-    <artifactId>library-parent</artifactId>
+    <artifactId>library</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 

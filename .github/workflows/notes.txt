@@ -1,0 +1,19 @@
+
+      # - name: Grant execute permissions for update-version.sh
+      #  run: chmod +x ./update-version.sh
+      #  working-directory: ./
+
+      # - name: Update version # auto-increments +0.0.1, if not manually set
+      #  run: ./update-version.sh
+      #  working-directory: ./
+
+      # - name: Build with Maven
+      #  run: mvn clean install
+      #  working-directory: ./
+
+      #- name: Build and publish
+      #  run: mvn clean deploy -s settings.xml
+      #  working-directory: ./
+      #  env:
+      #    GITHUB_TOKEN: ${{ secrets.PAT_FULL_POWER }}
+      #    ACTOR: ${{ github.actor }}

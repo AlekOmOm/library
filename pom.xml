@@ -5,7 +5,7 @@
 
     <groupId>com.Alek0m0m</groupId>
     <artifactId>library</artifactId>
-    <version>2.0.3</version>
+    <version>2.1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -42,6 +42,8 @@
         </dependencies>
     </dependencyManagement>
 
+
+
     <distributionManagement>
         <repository>
             <id>github</id>
@@ -54,4 +56,20 @@
             <url>https://maven.pkg.github.com/AlekOmOm/library</url>
         </snapshotRepository>
     </distributionManagement>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>3.0.0-M1</version>
+            </plugin>
+        </plugins>
+    </build>
+    <scm>
+        <connection>scm:git:https://github.com/AlekOmOm/library.git</connection>
+        <developerConnection>scm:git:https://github.com/AlekOmOm/library.git</developerConnection>
+        <url>https://github.com/AlekOmOm/library</url>
+    </scm>
 </project>

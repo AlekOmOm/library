@@ -19,34 +19,36 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
-      - name: Grant execute permissions for update-version.sh
-        run: chmod +x ./update-version.sh
-        working-directory: ./
+      - name: Prepare release
+        run: mvn release:prepare
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_FULL_POWER }}
+          ACTOR: ${{ github.actor }}
 
-      - name: Update version # auto-increments +0.0.1, if not manually set
-        run: ./update-version.sh
-        working-directory: ./
-
-      - name: check pat token
-        run: echo ${{ secrets.PAT_FULL_POWER }}
-
-      - name: Commit and push updated version
-        run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add .
-          git commit -m "Update version to new version"
-          git push https://x-access-token:${{ secrets.PAT_FULL_POWER }}@github.com/AlekOmOm/library.git master
-        working-directory: ./
-
-
-      - name: Build with Maven
-        run: mvn clean install
-        working-directory: ./
-
-      - name: Build and publish
-        run: mvn clean deploy -s settings.xml
+      - name: Perform release
+        run: mvn release:perform
         working-directory: ./
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_FULL_POWER }}
           ACTOR: ${{ github.actor }}
+
+
+
+      # - name: Grant execute permissions for update-version.sh
+      #  run: chmod +x ./update-version.sh
+      #  working-directory: ./
+
+      # - name: Update version # auto-increments +0.0.1, if not manually set
+      #  run: ./update-version.sh
+      #  working-directory: ./
+
+      # - name: Build with Maven
+      #  run: mvn clean install
+      #  working-directory: ./
+
+      #- name: Build and publish
+      #  run: mvn clean deploy -s settings.xml
+      #  working-directory: ./
+      #  env:
+      #    GITHUB_TOKEN: ${{ secrets.PAT_FULL_POWER }}
+      #    ACTOR: ${{ github.actor }}

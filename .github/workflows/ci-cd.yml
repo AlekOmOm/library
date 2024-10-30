@@ -24,7 +24,7 @@ jobs:
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git push https://x-access-token:${{ secrets.PAT_FULL_POWER }}@github.com/AlekOmOm/library.git master
-        working-directory: ./library
+        working-directory: ./
 
 
       - name: Prepare release
@@ -35,7 +35,7 @@ jobs:
 
       - name: Perform release
         run: mvn release:perform
-        working-directory: ./library
+        working-directory: ./
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_FULL_POWER }}
           ACTOR: ${{ github.actor }}

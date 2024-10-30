@@ -22,7 +22,7 @@ jobs:
       - name: Increment version
         run: |
           # Manually set version (uncomment and set the desired version)
-          MANUAL_VERSION="2.0"
+          # MANUAL_VERSION="2.0"
 
           if [ -z "$MANUAL_VERSION" ]; then
             CURRENT_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)

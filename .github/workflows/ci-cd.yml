@@ -46,5 +46,5 @@ jobs:
         run: mvn clean deploy -s settings.xml
         working-directory: ./
         env:
-          GITHUB_TOKEN: ${{ secrets.LIB_PAT_CLASSIC_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT_FULL_POWER }}
           ACTOR: ${{ github.actor }}

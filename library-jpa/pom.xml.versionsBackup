@@ -6,12 +6,12 @@
     <parent>
         <groupId>com.Alek0m0m</groupId>
         <artifactId>library</artifactId>
-        <version>2.0.3</version>
+        <version>1.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>library-spring</artifactId>
-    <version>2.0.3</version>
+    <artifactId>library-jpa</artifactId>
+    <version>1.0-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
@@ -21,15 +21,15 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
-            <version>6.1.5</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <version>3.3.4</version>
         </dependency>
-
         <dependency>
-            <groupId>com.Alek0m0m</groupId>
-            <artifactId>library-jpa</artifactId>
-            <version>2.0.3</version>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>2.2.224</version>
+            <scope>runtime</scope>
         </dependency>
 
     </dependencies>

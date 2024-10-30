@@ -19,22 +19,8 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
-      - name: Increment version
-        run: |
-          # Manually set version (uncomment and set the desired version)
-          MANUAL_VERSION="2.1"
-
-          if [ -z "$MANUAL_VERSION" ]; then
-            CURRENT_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
-            BASE_VERSION=$(echo $CURRENT_VERSION | awk -F. '{print $1}')
-            MINOR_VERSION=$(echo $CURRENT_VERSION | awk -F. '{print $2}')
-            NEW_MINOR_VERSION=$(printf "%.2f" $(echo "$MINOR_VERSION + 0.01" | bc))
-            NEW_VERSION="$BASE_VERSION.$NEW_MINOR_VERSION"
-          else
-            NEW_VERSION=$MANUAL_VERSION
-          fi
-
-          mvn versions:set -DnewVersion=$NEW_VERSION
+      - name: Update version # auto-increments +0.0.1, if not manually set
+        run: ./update-version.sh
         working-directory: ./
 
       - name: Build with Maven

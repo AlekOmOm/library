@@ -25,5 +25,5 @@ jobs:
       - name: Build and publish
         run: mvn clean deploy -s settings.xml
         env:
-          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.LIB_PAT_CLASSIC_TOKEN }}
           ACTOR: ${{ github.actor }}

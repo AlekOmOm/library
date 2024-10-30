@@ -14,9 +14,8 @@ public interface BaseRESTControllerInterface<T extends BaseEntity,R extends Base
 
     // ------------------- CRUD -------------------
 
-
-    @PostMapping
-    public ResponseEntity<R> create(@RequestBody BaseEntityDTO<T> entityDTO);
+    // @PostMapping()
+    // public ResponseEntity<R> create(BaseEntityDTO<T> entityDTO);
 
     @GetMapping()
     public ResponseEntity<List<R>> getAll();

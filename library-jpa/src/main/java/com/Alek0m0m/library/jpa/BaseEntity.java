@@ -5,8 +5,6 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 
 @MappedSuperclass
-@Entity
-
 public abstract class BaseEntity implements Serializable {
 
     @Id

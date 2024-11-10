@@ -10,7 +10,7 @@ cd "$(dirname "$0")" || exit
 cd "../library" || exit
 
 # Manually set version (uncomment and set the desired version)
-# MANUAL_VERSION="2.1.0-SNAPSHOT"
+# MANUAL_VERSION="2.2.0-SNAPSHOT"
 
 if [ -z "$MANUAL_VERSION" ]; then
     CURRENT_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# requires terminal: bash not powershell
+# open bash by typing bash in terminal, and write: ./update-version.sh
+
 # Navigate to the script's directory
 cd "$(dirname "$0")" || exit
 

@@ -3,9 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/library.iml" filepath="$PROJECT_DIR$/library.iml" />
-      <module fileurl="file://$PROJECT_DIR$/library-core/library-core.iml" filepath="$PROJECT_DIR$/library-core/library-core.iml" />
-      <module fileurl="file://$PROJECT_DIR$/library-jpa/library-jpa.iml" filepath="$PROJECT_DIR$/library-jpa/library-jpa.iml" />
-      <module fileurl="file://$PROJECT_DIR$/library-spring/library-spring.iml" filepath="$PROJECT_DIR$/library-spring/library-spring.iml" />
     </modules>
   </component>
 </project>

@@ -31,9 +31,10 @@ public abstract class BaseRESTController<T extends BaseEntity, R extends BaseEnt
 
 
 
+
     @PostMapping
-    public ResponseEntity<R> create(@RequestBody BaseEntityDTO<T> entityDTO) {
-        return ResponseEntity.ok(getService().save(entityDTO));
+    public ResponseEntity<R> create(@RequestBody R entityDTO) {
+        return ResponseEntity.ok(this.getService().save(entityDTO));
     }
 
     @GetMapping
@@ -65,7 +66,7 @@ public abstract class BaseRESTController<T extends BaseEntity, R extends BaseEnt
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<R> update(@PathVariable long id, @RequestBody BaseEntityDTO entity) {
+    public ResponseEntity<R> update(@PathVariable long id, @RequestBody R entityDTO) {
         R existingEntity = getService().findById(id);
         existingEntity.setId(id);
         return ResponseEntity.ok(getService().save(existingEntity));

@@ -16,8 +16,4 @@ public class UserController extends BaseRESTController<User, UserDTO, UserServic
     }
 
 
-    @Override
-    public ResponseEntity<UserDTO> create(BaseEntityDTO<User> entityDTO) {
-        return null;
-    }
 }

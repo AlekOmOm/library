@@ -1,21 +1,23 @@
 package com.Alek0m0m.library.jpa;
 
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.stereotype.Component;
 
-@Component
 
+
+@Component
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public abstract class BaseEntityDTO<T extends BaseEntity>{
 
     private long id;
 
     public abstract  T toEntity();
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public long getId() {
-        return id;
-    }
 
 }

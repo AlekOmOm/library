@@ -1,8 +1,5 @@
 package com.Alek0m0m.library.spring.web.mvc;
 
-import com.Alek0m0m.library.jpa.BaseEntity;
-
-import com.Alek0m0m.library.jpa.BaseEntityDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

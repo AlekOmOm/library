@@ -3,14 +3,9 @@ package com.Alek0m0m.library.jpa;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
-import org.springframework.lang.Nullable;
 
 import java.util.Objects;
-import java.util.Optional;
-import java.util.function.BiFunction;
-import java.util.function.Function;
 
 public abstract class BasePageRequestDTO {
     // extend class

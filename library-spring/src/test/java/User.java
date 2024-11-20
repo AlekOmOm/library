@@ -1,6 +1,5 @@
 
 
-import com.Alek0m0m.library.jpa.BaseEntity;
 import jakarta.persistence.Entity;
 
 @Entity

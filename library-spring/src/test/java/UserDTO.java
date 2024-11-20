@@ -1,9 +1,3 @@
-import com.Alek0m0m.library.jpa.BaseEntity;
-import com.Alek0m0m.library.jpa.BaseEntityDTO;
-
-import java.util.HashMap;
-
-
 public class UserDTO extends BaseEntityDTO<User> {
 
     private String name;

@@ -1,6 +1,3 @@
-import com.Alek0m0m.library.jpa.EntityToDTOMapper;
-
-
 public class UserEntityToDTOMapper implements EntityToDTOMapper<User, UserDTO> {
 
     @Override

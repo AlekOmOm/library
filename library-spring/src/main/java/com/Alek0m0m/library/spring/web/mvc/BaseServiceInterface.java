@@ -1,10 +1,7 @@
 package com.Alek0m0m.library.spring.web.mvc;
 
-import com.Alek0m0m.library.jpa.BaseEntity;
-import com.Alek0m0m.library.jpa.BaseEntityDTO;
 import org.springframework.stereotype.Service;
 
-import java.io.Serializable;
 import java.util.List;
 
 @Service

@@ -1,6 +1,5 @@
 package com.Alek0m0m.library.spring.web.mvc;
 
-import com.Alek0m0m.library.jpa.BaseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Repository;

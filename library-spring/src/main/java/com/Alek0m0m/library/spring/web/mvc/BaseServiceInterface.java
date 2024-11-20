@@ -8,12 +8,11 @@ import java.io.Serializable;
 import java.util.List;
 
 @Service
-public interface BaseServiceInterface<T extends BaseEntity, R extends BaseEntityDTO<T>> {
+public interface BaseServiceInterface< R extends BaseEntityDTO<T>, T extends BaseEntity> {
 
     BaseRepository<T> getRepository();
 
     R save(BaseEntityDTO<T> entityDTO);
-
 
     List<R> findAll();
     R findById(long id);

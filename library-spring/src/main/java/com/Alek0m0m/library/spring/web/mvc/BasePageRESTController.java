@@ -1,11 +1,11 @@
 package com.Alek0m0m.library.spring.web.mvc;
-
+import com.Alek0m0m.library.jpa.*;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 
 import java.util.function.Predicate;
 
-public abstract class BasePageRESTController<T extends BaseEntity, R extends BaseEntityDTO<T>, ServiceClass extends BaseService<T, R, RepositoryClass>, RepositoryClass extends BaseRepository<T>> extends BaseRESTController<T, R, ServiceClass, RepositoryClass> {
+public abstract class BasePageRESTController<DTOInput, DTO extends BaseEntityDTO<Entity>, Entity extends BaseEntity, Mapper extends EntityToDTOMapperImpl<DTOInput, DTO, Entity>, ServiceClass extends BaseService<DTOInput, DTO, Entity, Mapper, RepositoryClass>, RepositoryClass extends BaseRepository<Entity>> implements BaseRESTControllerInterface<DTOInput, DTO, Entity, Mapper> {
 
     public BasePageRESTController(ServiceClass service) {
         super(service);

@@ -4,10 +4,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import com.Alek0m0m.library.jpa.*;
+
 
 @RestController
-public interface BaseRESTControllerInterface<T extends BaseEntity,R extends BaseEntityDTO<T>> {
-    BaseService<T, R, BaseRepository<T>> getService();
+public interface BaseRESTControllerInterface<dtoinput, R extends BaseEntityDTO<T>, T extends BaseEntity, DtoMapper extends EntityToDTOMapperImpl<dtoinput, R, T>> {
+    BaseService<dtoinput,R,T, DtoMapper,BaseRepository<T>> getService();
 
     // ------------------- CRUD -------------------
 
@@ -20,9 +22,10 @@ public interface BaseRESTControllerInterface<T extends BaseEntity,R extends Base
     @GetMapping("/{id}")
     public ResponseEntity<R> getById(long id);
 
-    @PutMapping("/{id}")
-    public ResponseEntity<R> update(long id, R entityDTO);
+//    @PutMapping("/{id}")
+//    public ResponseEntity<R> update(long id, R entityDTO);
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(long id);
 }
+

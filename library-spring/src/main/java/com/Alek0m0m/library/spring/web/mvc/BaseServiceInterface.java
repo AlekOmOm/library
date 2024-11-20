@@ -1,5 +1,6 @@
 package com.Alek0m0m.library.spring.web.mvc;
 
+import com.Alek0m0m.library.jpa.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,4 +1,6 @@
-public class UserEntityToDTOMapper implements EntityToDTOMapper<User, UserDTO> {
+import com.Alek0m0m.library.jpa.*;
+import com.Alek0m0m.library.spring.web.mvc.*;
+public class UserEntityToDTOMapper implements EntityToDTOMapperImpl< ,UserDTO,User> {
 
     @Override
     public UserDTO apply(User entity) {

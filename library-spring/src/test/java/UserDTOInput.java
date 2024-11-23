@@ -1,11 +1,5 @@
 
-
-import com.Alek0m0m.library.jpa.*;
-import jakarta.persistence.Entity;
-
-@Entity
-
-public class User extends BaseEntity {
+public class UserDTOInput {
 
     private String name;
     private String email;
@@ -47,6 +41,15 @@ public class User extends BaseEntity {
         this.role = role;
     }
 
+    @Override
+    public String toString() {
+        return "UserDTOInput{" +
+                "name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
+                '}';
+    }
 
 
 }

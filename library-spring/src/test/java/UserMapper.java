@@ -1,6 +1,6 @@
 import com.Alek0m0m.library.jpa.*;
-import com.Alek0m0m.library.spring.web.mvc.*;
-public class UserEntityToDTOMapper extends EntityToDTOMapperImpl<UserDTOInput, UserDTO, User> {
+
+public class UserMapper extends EntityToDTOMapperImpl<UserDTOInput, UserDTO, User> {
 
     @Override
     public UserDTO toDTO(UserDTOInput dtoInput) {

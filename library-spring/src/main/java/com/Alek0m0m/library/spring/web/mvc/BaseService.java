@@ -53,14 +53,9 @@ public abstract class BaseService<dtoinput, R extends BaseEntityDTO<T>, T extend
     public R save(BaseEntityDTO<T> entityDTO) {
         resetAutoIncrement();
 
-        T t = entityDTO.toEntity();
-        debugPrint("save()", t.toString());
-
         R e = mapper.toDTO(
                 getRepository()
                         .save(entityDTO.toEntity()));
-
-        debugPrint("save()", e.toString());
         return e;
     }
 

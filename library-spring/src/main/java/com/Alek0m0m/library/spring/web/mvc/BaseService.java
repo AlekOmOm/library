@@ -9,7 +9,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.support.PageableExecutionUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.Alek0m0m.library.jpa.*;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -57,7 +56,7 @@ public abstract class BaseService<dtoinput, R extends BaseEntityDTO<T>, T extend
         T t = entityDTO.toEntity();
         debugPrint("save()", t.toString());
 
-        R e = mapper.entityToDTO(
+        R e = mapper.toDTO(
                 getRepository()
                         .save(entityDTO.toEntity()));
 

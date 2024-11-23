@@ -12,18 +12,18 @@ public interface EntityToDTOMapper<dtoinput, R extends BaseEntityDTO<T>, T exten
 
     T toEntity(R dto);
 
-    R entityToDTO(T entity);
+    R toDTO(T entity);
 
     BaseEntityDTO<T> toDTOBase(dtoinput dtoinput);
 
     BaseEntity toEntityBase(BaseEntityDTO<T> dto);
 
-    BaseEntityDTO<T> entityToDTOBase(BaseEntity entity);
+    BaseEntityDTO<T> toDTOBase(BaseEntity entity);
 
     // apply using all the converters
 
     default R map(T t) {
-        return entityToDTO(t);
+        return toDTO(t);
     }
 
     default R map(dtoinput dtoinput) {

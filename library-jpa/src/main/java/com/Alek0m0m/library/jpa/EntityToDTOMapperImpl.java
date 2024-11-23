@@ -4,18 +4,20 @@ import org.springframework.stereotype.Service;
 
 @Service
 
-public abstract class EntityToDTOMapperImpl<dtoinput, R extends BaseEntityDTO<T>, T extends BaseEntity>  implements EntityToDTOMapper<dtoinput, R, T> {
+public abstract class EntityToDTOMapperImpl<DTOInput, R extends BaseEntityDTO<T>, T extends BaseEntity>  implements EntityToDTOMapper<DTOInput, R, T> {
 
+    // ------------------- Abstract methods -------------------
     @Override
-    public abstract R toDTO(dtoinput dtoinput);
+    public abstract R toDTO(DTOInput dtoinput);
 
     @Override
     public abstract T toEntity(R dto) ;
 
     @Override
-    public abstract R entityToDTO(T entity);
+    public abstract R toDTO(T entity);
 
-    public BaseEntityDTO<T> toDTOBase(dtoinput dtoinput) {
+    // ------------------- Base methods -------------------
+    public BaseEntityDTO<T> toDTOBase(DTOInput dtoinput) {
         return toDTO(dtoinput);
     }
 
@@ -23,8 +25,8 @@ public abstract class EntityToDTOMapperImpl<dtoinput, R extends BaseEntityDTO<T>
         return toEntity((R) dto);
     }
 
-    public BaseEntityDTO<T> entityToDTOBase(BaseEntity entity) {
-        return entityToDTO((T) entity);
+    public BaseEntityDTO<T> toDTOBase(BaseEntity entity) {
+        return toDTO((T) entity);
     }
 
 
@@ -34,7 +36,7 @@ public abstract class EntityToDTOMapperImpl<dtoinput, R extends BaseEntityDTO<T>
     }
 
     @Override
-    public R map(dtoinput dtoinput) {
+    public R map(DTOInput dtoinput) {
         return EntityToDTOMapper.super.map(dtoinput);
     }
 
@@ -45,7 +47,7 @@ public abstract class EntityToDTOMapperImpl<dtoinput, R extends BaseEntityDTO<T>
 
     @Override
     public R apply(T entity) {
-        return entityToDTO(entity);
+        return toDTO(entity);
     }
 
 

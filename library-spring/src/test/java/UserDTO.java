@@ -1,3 +1,6 @@
+
+import com.Alek0m0m.library.jpa.BaseEntityDTO;
+
 public class UserDTO extends BaseEntityDTO<User> {
 
     private String name;

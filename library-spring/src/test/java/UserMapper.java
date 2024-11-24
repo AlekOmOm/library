@@ -5,7 +5,6 @@ import java.util.function.Consumer;
 
 public class UserMapper extends EntityToDTOMapperImpl<UserDTOInput, UserDTO, User> {
 
-
     private final BiFunction<UserDTOInput, User, UserDTO> toDTO = (dtoInput, entity) -> {
         UserDTO dto = new UserDTO();
         if (entity == null) {
@@ -25,7 +24,6 @@ public class UserMapper extends EntityToDTOMapperImpl<UserDTOInput, UserDTO, Use
         }
         return dto;
     };
-
 
     @Override
     public BiFunction<UserDTOInput, User, UserDTO> toDTO(UserDTOInput dtoInput, User entity) {

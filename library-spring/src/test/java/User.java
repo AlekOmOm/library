@@ -14,7 +14,6 @@ public class User extends BaseEntity {
 
 
     // Getters and Setters
-
     public User setId(long id) {
         this.id = id;
         return this;

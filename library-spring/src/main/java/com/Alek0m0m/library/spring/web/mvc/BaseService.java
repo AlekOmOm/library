@@ -34,19 +34,17 @@ public abstract class BaseService<dtoinput, R extends BaseEntityDTO<T>, T extend
         this.subServiceClass = subServiceClass;
     }
 
-    public BaseRepository<T> getRepository() {
-        return repository;
-    }
     public EntityToDTOMapper<dtoinput, R, T> getDtoMapper() {
         return mapper;
     }
     public BaseService getSubServiceClass() {
         return subServiceClass;
     }
-
-    protected void resetAutoIncrement() {
-        repository.resetAutoIncrement();
+    public BaseRepository<T> getRepository() {
+        return repository;
     }
+
+    protected void resetAutoIncrement() { repository.resetAutoIncrement();}
 
     // --------------------- CRUD ---------------------
     @Transactional
@@ -62,7 +60,8 @@ public abstract class BaseService<dtoinput, R extends BaseEntityDTO<T>, T extend
     @Transactional
     public List<R> saveAll(List<BaseEntityDTO<T>> entityDTOs) {
         resetAutoIncrement();
-        return getRepository().saveAll(
+        return getRepository()
+                .saveAll(
                         entityDTOs.stream()
                                 .map(BaseEntityDTO::toEntity)
                                 .collect(Collectors.toList()))
@@ -80,12 +79,14 @@ public abstract class BaseService<dtoinput, R extends BaseEntityDTO<T>, T extend
     }
 
     @Override
+    @Transactional
     public List<R> findAll() {
         return getRepository().findAll().stream()
                 .map(mapper)
                 .collect(Collectors.toList());
     }
 
+    @Transactional
     public List<R> findAll(Predicate<R> filter) {
         return repository.findAll().stream()
                 .map(mapper)
@@ -94,6 +95,7 @@ public abstract class BaseService<dtoinput, R extends BaseEntityDTO<T>, T extend
     }
 
     @Override
+    @Transactional
     public R findById(long id) {
         return getRepository().findById(id)
                 .map(mapper)
@@ -101,14 +103,13 @@ public abstract class BaseService<dtoinput, R extends BaseEntityDTO<T>, T extend
                         -> new EntityNotFoundException("Entity not found"));
     }
 
-
     @Override
+    @Transactional
     public void deleteById(long id) {
         getRepository().deleteById(id);
     }
 
-
-    // delete all
+    @Transactional
     public void deleteAll() {
         resetAutoIncrement();
         getRepository().deleteAll();

@@ -4,11 +4,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.function.Function;
 
-
 @Service
-public interface EntityToDTOMapper<dtoinput, R extends BaseEntityDTO<T>, T extends BaseEntity> extends Function<T, R> {
+public interface EntityToDTOMapper<DI, R extends BaseEntityDTO<T>, T extends BaseEntity> extends Function<T, R> {
 
-    R toDTO(dtoinput dtoinput);
+    R toDTO(DI di);
 
     default T toEntity(R dto) {
         return dto.toEntity();
@@ -16,20 +15,19 @@ public interface EntityToDTOMapper<dtoinput, R extends BaseEntityDTO<T>, T exten
 
     R toDTO(T entity);
 
-    BaseEntityDTO<T> toDTOBase(dtoinput dtoinput);
+    BaseEntityDTO<T> toDTOBase(DI di);
 
     BaseEntity toEntityBase(BaseEntityDTO<T> dto);
 
     BaseEntityDTO<T> toDTOBase(BaseEntity entity);
 
-    // apply using all the converters
-
-    default R map(T t) {
-        return toDTO(t);
+    // --------------------- Implementing Map Operations used in BaseService operations ---------------------
+    default R map(T entity) {
+        return toDTO(entity);
     }
 
-    default R map(dtoinput dtoinput) {
-        return toDTO(dtoinput);
+    default R map(DI di) {
+        return toDTO(di);
     }
 
     default T map(R dto) {

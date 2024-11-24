@@ -10,49 +10,56 @@ public class UserDTO extends BaseEntityDTO<User> {
 
     @Override
     public User toEntity() {
-        User user = new User();
-        user.setId(this.getId());
-        user.setName(this.name);
-        user.setEmail(this.email);
-        user.setPassword(this.password);
-        user.setRole(this.role);
-        return user;
+        return new User()
+                .setId(this.getId())
+                .setName(this.getName())
+                .setEmail(this.getEmail())
+                .setPassword(this.getPassword())
+                .setRole(this.getRole());
     }
 
-    //
+
     // Getters and Setters
+
+    public UserDTO setId(long id) {
+        super.setId(id);
+        return this;
+    }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public UserDTO setName(String name) {
         this.name = name;
+        return this;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public UserDTO setEmail(String email) {
         this.email = email;
+        return this;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public UserDTO setPassword(String password) {
         this.password = password;
+        return this;
     }
 
     public String getRole() {
         return role;
     }
 
-
-    public void setRole(String role) {
+    public UserDTO setRole(String role) {
         this.role = role;
+        return this;
     }
 
 }

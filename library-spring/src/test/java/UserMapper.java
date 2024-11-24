@@ -9,17 +9,19 @@ public class UserMapper extends EntityToDTOMapperImpl<UserDTOInput, UserDTO, Use
     private final BiFunction<UserDTOInput, User, UserDTO> toDTO = (dtoInput, entity) -> {
         UserDTO dto = new UserDTO();
         if (entity == null) {
-            dto.setId(dtoInput.getId());
-            dto.setName(dtoInput.getName());
-            dto.setEmail(dtoInput.getEmail());
-            dto.setPassword(dtoInput.getPassword());
-            dto.setRole(dtoInput.getRole());
+            dto
+                    .setId(dtoInput.getId())
+                    .setName(dtoInput.getName())
+                    .setEmail(dtoInput.getEmail())
+                    .setPassword(dtoInput.getPassword())
+                    .setRole(dtoInput.getRole());
         } else {
-            entity.setId(dtoInput.getId());
-            entity.setName(dtoInput.getName());
-            entity.setEmail(dtoInput.getEmail());
-            entity.setPassword(dtoInput.getPassword());
-            entity.setRole(dtoInput.getRole());
+            entity
+                    .setId(dtoInput.getId())
+                    .setName(dtoInput.getName())
+                    .setEmail(dtoInput.getEmail())
+                    .setPassword(dtoInput.getPassword())
+                    .setRole(dtoInput.getRole());
         }
         return dto;
     };

@@ -2,19 +2,30 @@ package com.Alek0m0m.library.jpa;
 
 import org.springframework.stereotype.Service;
 
+import java.util.function.BiFunction;
+
 @Service
 
 public abstract class EntityToDTOMapperImpl<DTOInput, R extends BaseEntityDTO<T>, T extends BaseEntity>  implements EntityToDTOMapper<DTOInput, R, T> {
 
     // ------------------- Abstract methods -------------------
-    @Override
-    public abstract R toDTO(DTOInput dtoinput);
+
+    public abstract BiFunction<DTOInput, T, R> toDTO(DTOInput dtoInput, T entity);
 
     @Override
-    public abstract T toEntity(R dto) ;
+    public R toDTO(DTOInput dtoinput) {
+        return (R) toDTO(dtoinput, null);
+    }
 
     @Override
-    public abstract R toDTO(T entity);
+    public R toDTO(T entity) {
+        return (R) toDTO(null, entity);
+    }
+
+    @Override
+    public T toEntity(R dto) {
+        return dto.toEntity();
+    }
 
     // ------------------- Base methods -------------------
     public BaseEntityDTO<T> toDTOBase(DTOInput dtoinput) {

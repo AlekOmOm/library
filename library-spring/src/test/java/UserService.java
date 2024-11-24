@@ -10,4 +10,13 @@ public class UserService extends BaseService<UserDTOInput, UserDTO, User, UserMa
         super(repository, mapper);
     }
 
+    public UserDTO findByUsername(String username) {
+
+        UserDTOInput userDTOInput = new UserDTOInput();
+
+
+
+        return null;
+    }
+
 }

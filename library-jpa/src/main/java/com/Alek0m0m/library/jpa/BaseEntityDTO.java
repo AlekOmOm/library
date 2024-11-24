@@ -13,7 +13,8 @@ public abstract class BaseEntityDTO<T extends BaseEntity>{
         return id;
     }
 
-    public void setId(long id) {
+    public BaseEntityDTO<T> setId(long id) {
         this.id = id;
+        return this;
     }
 }

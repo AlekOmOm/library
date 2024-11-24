@@ -10,7 +10,9 @@ public interface EntityToDTOMapper<dtoinput, R extends BaseEntityDTO<T>, T exten
 
     R toDTO(dtoinput dtoinput);
 
-    T toEntity(R dto);
+    default T toEntity(R dto) {
+        return dto.toEntity();
+    }
 
     R toDTO(T entity);
 

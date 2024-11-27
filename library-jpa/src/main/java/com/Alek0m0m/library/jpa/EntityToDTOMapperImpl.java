@@ -2,11 +2,59 @@ package com.Alek0m0m.library.jpa;
 
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.function.BiFunction;
 
 @Service
 
 public abstract class EntityToDTOMapperImpl<DTOInput, R extends BaseEntityDTO<T>, T extends BaseEntity>  implements EntityToDTOMapper<DTOInput, R, T> {
+
+    // Main operations for Use
+
+    @Override
+    public R map(T t) {
+        return EntityToDTOMapper.super.map(t);
+    }
+
+    @Override
+    public R map(DTOInput dtoinput) {
+        return EntityToDTOMapper.super.map(dtoinput);
+    }
+
+    @Override
+    public T map(R dto) {
+        return EntityToDTOMapper.super.map(dto);
+    }
+
+    @Override
+    public R apply(T entity) {
+        return toDTO(entity);
+    }
+
+        // List mapping
+    public Collection<R> map(List<T> entities) {
+        return entities.stream()
+                .map(this::map)
+                .toList();
+    }
+
+    public Collection<R> mapToEntity(List<DTOInput> dtoInputs) {
+        return dtoInputs.stream()
+                .map(this::map)
+                .toList();
+    }
+
+    public Collection<T> mapToEntity(Collection<R> dtos) {
+        return dtos.stream()
+                .map(this::map)
+                .toList();
+    }
+
+
+
+
+
 
     // ------------------- Abstract methods -------------------
 
@@ -40,26 +88,6 @@ public abstract class EntityToDTOMapperImpl<DTOInput, R extends BaseEntityDTO<T>
         return toDTO((T) entity);
     }
 
-
-    @Override
-    public R map(T t) {
-        return EntityToDTOMapper.super.map(t);
-    }
-
-    @Override
-    public R map(DTOInput dtoinput) {
-        return EntityToDTOMapper.super.map(dtoinput);
-    }
-
-    @Override
-    public T map(R dto) {
-        return EntityToDTOMapper.super.map(dto);
-    }
-
-    @Override
-    public R apply(T entity) {
-        return toDTO(entity);
-    }
 
 
     private void debugPrint(String method, String message) {

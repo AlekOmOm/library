@@ -100,17 +100,17 @@ To use the library in your project, add the specific modules you need as depende
     <dependency>
         <groupId>com.Alek0m0m</groupId>
         <artifactId>library-spring</artifactId>
-        <version>2.1.3</version> <!-- replace with latest version or release -->
+        <version>2.3.2</version> <!-- replace with latest version or release -->
     </dependency>
     <dependency>
         <groupId>com.Alek0m0m</groupId>
         <artifactId>library-jpa</artifactId>
-        <version>2.1.3</version>
+        <version>2.3.2</version>
     </dependency>
     <dependency>
         <groupId>com.Alek0m0m</groupId>
         <artifactId>library-core</artifactId>
-        <version>2.1.3</version>
+        <version>2.3.2</version>
     </dependency>
 </dependencies>
 ```

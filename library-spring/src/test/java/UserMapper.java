@@ -26,6 +26,4 @@ public class UserMapper extends EntityToDTOMapperImpl<UserDTOInput, UserDTO, Use
         }
         return dto;
     }
-
-
 }

@@ -76,8 +76,12 @@ public abstract class BaseRESTController<DTOInput, DTO extends BaseEntityDTO<Ent
         if (existingEntity == null) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(getService().save(existingEntity));
+        DTO updatedEntity = this.convert(dtoinput);
+            updatedEntity.setId(id);
+
+        return ResponseEntity.ok(this.getService().save(updatedEntity));
     }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") long id) {

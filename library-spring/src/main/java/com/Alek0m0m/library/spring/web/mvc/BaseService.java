@@ -44,23 +44,17 @@ public abstract class BaseService<dtoinput, R extends BaseEntityDTO<T>, T extend
         return repository;
     }
 
-    protected void resetAutoIncrement() { repository.resetAutoIncrement();}
-
     // --------------------- CRUD ---------------------
     @Transactional
     public R save(BaseEntityDTO<T> entityDTO) {
-        resetAutoIncrement();
-
-        R e = mapper.toDTO(
+        return mapper.convert(
                 getRepository()
                         .save(entityDTO.toEntity()));
-
-        return e;
     }
 
     @Transactional
     public List<R> saveAll(List<BaseEntityDTO<T>> entityDTOs) {
-        resetAutoIncrement();
+
         return getRepository()
                 .saveAll(
                         entityDTOs.stream()
@@ -73,7 +67,7 @@ public abstract class BaseService<dtoinput, R extends BaseEntityDTO<T>, T extend
 
     @Transactional
     public R update(BaseEntityDTO<T> entityDTO) {
-        resetAutoIncrement();
+
         return mapper.apply(
                 getRepository()
                         .save(entityDTO.toEntity()));
@@ -98,10 +92,9 @@ public abstract class BaseService<dtoinput, R extends BaseEntityDTO<T>, T extend
     @Override
     @Transactional
     public R findById(long id) {
-        return getRepository().findById(id)
-                .map(mapper)
-                .orElseThrow(()
-                        -> new EntityNotFoundException("Entity not found"));
+        return mapper.convert(getRepository().findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Entity not found")));
+
     }
 
     @Override
@@ -112,7 +105,6 @@ public abstract class BaseService<dtoinput, R extends BaseEntityDTO<T>, T extend
 
     @Transactional
     public void deleteAll() {
-        resetAutoIncrement();
         getRepository().deleteAll();
     }
 

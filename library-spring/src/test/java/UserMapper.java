@@ -9,7 +9,7 @@ import java.util.function.Consumer;
 public class UserMapper extends EntityToDTOMapperImpl<UserDTOInput, UserDTO, User> {
 
     @Override
-    public UserDTO toDTO(UserDTOInput dtoInput, User entity) {
+    public UserDTO map(UserDTOInput dtoInput, User entity) {
         UserDTO dto = new UserDTO();
         if (entity == null) {
             dto.setId(dtoInput.getId())
@@ -26,4 +26,6 @@ public class UserMapper extends EntityToDTOMapperImpl<UserDTOInput, UserDTO, Use
         }
         return dto;
     }
+
+
 }

@@ -11,10 +11,5 @@ import com.Alek0m0m.library.jpa.*;
 public interface BaseRepository<T extends BaseEntity> extends JpaRepository<T, Long> {
 
 
-    @Modifying
-    @Transactional
-    @Query(value = "ALTER TABLE #{#entityName} AUTO_INCREMENT = 1", nativeQuery = true)
-    void resetAutoIncrement();
-
 }
 

@@ -1,5 +1,4 @@
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -26,21 +25,11 @@ public class InitData {
 
 
     void initUsers() {
-        // array of users.
-        Arrays.stream(users).toList() // convert to list
-                .stream()
-                .map(userMapper::toDTO) // convert dtoInput to DTO
-                .forEach(userService::save); // save to db
-
-        // oop version:
-
-        for (UserDTOInput user : users) {
-            UserDTO dto = userService.save(userMapper.toDTO(user));
-            System.out.println("User: " + user);
-            System.out.println("UserDTO: " + dto);
-            assert(user.equals(userMapper.toDTO(user)));
-        }
-
+        Arrays.stream(users).forEach(userInput -> {
+            if (userService.findByNameAndEmail(userInput.getName(), userInput.getEmail()).isEmpty()) {
+                userService.save(userMapper.convert(userInput));
+            }
+        });
     }
 
 }

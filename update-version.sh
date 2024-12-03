@@ -42,3 +42,5 @@ fi
 mvn versions:set -DnewVersion=$NEW_VERSION
 
 mvn install -DskipTests
+
+mvn deploy -s "C:\Users\HP\.m2\settings.xml" -DskipTests

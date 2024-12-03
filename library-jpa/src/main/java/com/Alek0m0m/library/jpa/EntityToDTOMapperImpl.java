@@ -4,17 +4,18 @@ public abstract class EntityToDTOMapperImpl<DI, R extends BaseEntityDTO<T>, T ex
 
     @Override
     public R apply(T entity) {
-        return toDTO(entity);
+        return mapEntityToDTO(entity);
+    }
+
+
+    @Override
+    public R mapInputToDTO(DI dtoInput) {
+        return map(dtoInput, null);
     }
 
     @Override
-    public R toDTO(DI dtoInput) {
-        return toDTO(dtoInput, null);
-    }
-
-    @Override
-    public R toDTO(T entity) {
-        return toDTO(null, entity);
+    public R mapEntityToDTO(T entity) {
+        return map(null, entity);
     }
 
     @Override
@@ -22,5 +23,5 @@ public abstract class EntityToDTOMapperImpl<DI, R extends BaseEntityDTO<T>, T ex
         return dto.toEntity();
     }
 
-    public abstract R toDTO(DI dtoInput, T entity);
+    public abstract R map(DI dtoInput, T entity);
 }

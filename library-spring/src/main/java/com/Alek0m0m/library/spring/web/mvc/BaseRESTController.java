@@ -27,8 +27,8 @@ public abstract class BaseRESTController<DTOInput, DTO extends BaseEntityDTO<Ent
         return (BaseService<DTOInput, DTO, Entity, Mapper, BaseRepository<Entity>>) baseService;
     }
 
-    private DTO map(DTOInput dtoInput) {
-        return service.getDtoMapper().toDTO(dtoInput);
+    protected DTO convert(DTOInput dtoInput) {
+        return service.getDtoMapper().convert(dtoInput);
     }
 
     // ------------------- CRUD -------------------
@@ -39,7 +39,7 @@ public abstract class BaseRESTController<DTOInput, DTO extends BaseEntityDTO<Ent
             return ResponseEntity.badRequest().build();
         }
 
-        return ResponseEntity.ok(getService().save(map(dtoinput)));
+        return ResponseEntity.ok(getService().save(convert(dtoinput)));
     }
 
     @GetMapping
@@ -97,9 +97,5 @@ public abstract class BaseRESTController<DTOInput, DTO extends BaseEntityDTO<Ent
 
     // ------------------- Helper methods -------------------
 
-    @PostMapping("/reset-auto-increment")
-    public ResponseEntity<Void> resetAutoIncrement() {
-        getService().resetAutoIncrement();
-        return ResponseEntity.noContent().build();
-    }
+
 }

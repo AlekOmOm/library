@@ -40,13 +40,16 @@ public abstract class BaseService<dtoinput, R extends BaseEntityDTO<T>, T extend
     public BaseService getSubServiceClass() {
         return subServiceClass;
     }
-    public BaseRepository<T> getRepository() {
+    public RepositoryClass getRepository() {
         return repository;
     }
+
+    protected abstract void resetIncrement();
 
     // --------------------- CRUD ---------------------
     @Transactional
     public R save(BaseEntityDTO<T> entityDTO) {
+        resetIncrement();
         return mapper.convert(
                 getRepository()
                         .save(entityDTO.toEntity()));
@@ -54,7 +57,7 @@ public abstract class BaseService<dtoinput, R extends BaseEntityDTO<T>, T extend
 
     @Transactional
     public List<R> saveAll(List<BaseEntityDTO<T>> entityDTOs) {
-
+        resetIncrement();
         return getRepository()
                 .saveAll(
                         entityDTOs.stream()
@@ -67,7 +70,7 @@ public abstract class BaseService<dtoinput, R extends BaseEntityDTO<T>, T extend
 
     @Transactional
     public R update(BaseEntityDTO<T> entityDTO) {
-
+        resetIncrement();
         return mapper.apply(
                 getRepository()
                         .save(entityDTO.toEntity()));
@@ -100,11 +103,13 @@ public abstract class BaseService<dtoinput, R extends BaseEntityDTO<T>, T extend
     @Override
     @Transactional
     public void deleteById(long id) {
+        resetIncrement();
         getRepository().deleteById(id);
     }
 
     @Transactional
     public void deleteAll() {
+        resetIncrement();
         getRepository().deleteAll();
     }
 

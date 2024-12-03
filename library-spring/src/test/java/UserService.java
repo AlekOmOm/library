@@ -12,6 +12,11 @@ public class UserService extends BaseService<UserDTOInput, UserDTO, User, UserMa
         super(repository, mapper);
     }
 
+    @Override
+    protected void resetIncrement() {
+        getRepository().resetAutoIncrement();
+    }
+
     public UserDTO findByUsername(String username) {
 
         UserDTOInput userDTOInput = new UserDTOInput();

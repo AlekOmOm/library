@@ -66,12 +66,12 @@ public abstract class BaseRESTController<DTOInput, DTO extends BaseEntityDTO<Ent
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<DTO> getById(@PathVariable long id) {
+    public ResponseEntity<DTO> getById(@PathVariable("id") long id) {
         return ResponseEntity.ok(getService().findById(id));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<DTO> update(@PathVariable long id, @RequestBody DTOInput dtoinput) {
+    public ResponseEntity<DTO> update(@PathVariable("id") long id, @RequestBody DTOInput dtoinput) {
         DTO existingEntity = getService().findById(id);
         if (existingEntity == null) {
             return ResponseEntity.notFound().build();
@@ -80,7 +80,7 @@ public abstract class BaseRESTController<DTOInput, DTO extends BaseEntityDTO<Ent
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable long id) {
+    public ResponseEntity<Void> delete(@PathVariable("id") long id) {
         if (getService().findById(id) == null) {
             return ResponseEntity.notFound().build();
         }

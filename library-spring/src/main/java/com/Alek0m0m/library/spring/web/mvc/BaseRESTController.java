@@ -28,7 +28,7 @@ public abstract class BaseRESTController<DTOInput, DTO extends BaseEntityDTO<Ent
     }
 
     private DTO map(DTOInput dtoInput) {
-        return service.getDtoMapper().map(dtoInput);
+        return service.getDtoMapper().toDTO(dtoInput);
     }
 
     // ------------------- CRUD -------------------
@@ -38,18 +38,13 @@ public abstract class BaseRESTController<DTOInput, DTO extends BaseEntityDTO<Ent
         if (dtoinput == null) {
             return ResponseEntity.badRequest().build();
         }
-        System.out.println();
-        System.out.println(" dtoinput: " + dtoinput);
-        System.out.println();
 
         return ResponseEntity.ok(getService().save(map(dtoinput)));
     }
 
     @GetMapping
     public ResponseEntity<List<DTO>> getAll() {
-        System.out.println();
-        System.out.println("getAll called");
-        System.out.println();
+
         return ResponseEntity.ok(getService().findAll());
     }
 

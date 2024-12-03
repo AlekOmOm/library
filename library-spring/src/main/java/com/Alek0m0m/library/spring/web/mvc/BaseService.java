@@ -54,6 +54,7 @@ public abstract class BaseService<dtoinput, R extends BaseEntityDTO<T>, T extend
         R e = mapper.toDTO(
                 getRepository()
                         .save(entityDTO.toEntity()));
+
         return e;
     }
 

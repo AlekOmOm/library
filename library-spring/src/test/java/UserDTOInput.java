@@ -1,4 +1,5 @@
 
+
 public class UserDTOInput {
 
     private long id;
@@ -7,6 +8,16 @@ public class UserDTOInput {
     private String password;
     private String role;
 
+    UserDTOInput() {
+    }
+
+    UserDTOInput(long id, String name, String email, String password, String role) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
 
     // Getters and Setters
 

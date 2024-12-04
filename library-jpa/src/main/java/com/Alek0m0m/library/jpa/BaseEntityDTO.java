@@ -5,15 +5,15 @@ import org.springframework.stereotype.Component;
 @Component
 public abstract class BaseEntityDTO<T extends BaseEntity>{
 
-    private long id;
+    private Long id;
 
     public abstract T toEntity();
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public BaseEntityDTO<T> setId(long id) {
+    public BaseEntityDTO<T> setId(Long id) {
         this.id = id;
         return this;
     }

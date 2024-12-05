@@ -11,7 +11,7 @@ public class UserDTO extends BaseEntityDTO<User> {
     @Override
     public User toEntity() {
         return new User()
-                .setId(this.getId())
+                .setId(this.getId() != 0 ? this.getId() : 0L)
                 .setName(this.getName())
                 .setEmail(this.getEmail())
                 .setPassword(this.getPassword())
@@ -19,8 +19,25 @@ public class UserDTO extends BaseEntityDTO<User> {
     }
 
 
-    // Getters and Setters
+    // ----------------- Constructors -----------------
+    public UserDTO(User input) {
+        this.setId(input.getId() != 0 ? input.getId() : 0L);
+        this.name = input.getName();
+        this.email = input.getEmail();
+        this.password = input.getPassword();
+        this.role = input.getRole();
+    }
 
+    public UserDTO(UserDTOInput input) {
+        this.setId(input.getId() != 0 ? input.getId() : 0L);
+        this.name = input.getName();
+        this.email = input.getEmail();
+        this.password = input.getPassword();
+        this.role = input.getRole();
+    }
+
+
+    // ----------------- Setters -----------------
     public UserDTO setId(long id) {
         super.setId(id);
         return this;

@@ -28,11 +28,12 @@ public interface EntityToDTOMapper<DI, R extends BaseEntityDTO<T>, T extends Bas
     }
 
 
-
-
     // --------------------- Mapping ---------------------
 
     abstract R map(DI dtoInput, T entity);
+
+    abstract R toDTO(DI dtoInput);
+
 
     default R mapInputToDTO(DI di) {
         if (di == null) {

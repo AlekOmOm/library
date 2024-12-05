@@ -8,23 +8,31 @@ import java.util.function.Consumer;
 @Service
 public class UserMapper extends EntityToDTOMapperImpl<UserDTOInput, UserDTO, User> {
 
+
     @Override
-    public UserDTO map(UserDTOInput dtoInput, User entity) {
-        UserDTO dto = new UserDTO();
-        if (entity == null) {
-            dto.setId(dtoInput.getId())
-                    .setName(dtoInput.getName())
-                    .setEmail(dtoInput.getEmail())
-                    .setPassword(dtoInput.getPassword())
-                    .setRole(dtoInput.getRole());
-        } else {
-            entity.setId(dtoInput.getId())
-                    .setName(dtoInput.getName())
-                    .setEmail(dtoInput.getEmail())
-                    .setPassword(dtoInput.getPassword())
-                    .setRole(dtoInput.getRole());
+    public UserDTO toDTO(UserDTOInput dtoInput) {
+        return new UserDTO(dtoInput);
+    }
+
+    @Override
+    public UserDTO map(UserDTO dto, User entity) {
+        if (entity == null && dto == null) {
+            return null;
         }
-        return dto;
+
+        if (entity == null) {
+            return dto;
+        }
+
+        if (dto == null) {
+            return new UserDTO(entity);
+        }
+
+        return new UserDTO(entity)
+                .setName(dto.getName() != null ? dto.getName() : entity.getName())
+                .setEmail(dto.getEmail() != null ? dto.getEmail() : entity.getEmail())
+                .setPassword(dto.getPassword() != null ? dto.getPassword() : entity.getPassword())
+                .setRole(dto.getRole() != null ? dto.getRole() : entity.getRole());
     }
 
 

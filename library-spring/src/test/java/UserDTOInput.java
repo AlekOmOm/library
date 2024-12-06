@@ -25,39 +25,44 @@ public class UserDTOInput {
         return id;
     }
 
-    public void setId(long id) {
+    public UserDTOInput setId(long id) {
         this.id = id;
+        return this;
     }
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public UserDTOInput setName(String name) {
         this.name = name;
+        return this;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public UserDTOInput setEmail(String email) {
         this.email = email;
+        return this;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public UserDTOInput setPassword(String password) {
         this.password = password;
+        return this;
     }
 
     public String getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public UserDTOInput setRole(String role) {
         this.role = role;
+        return this;
     }
 
     @Override
